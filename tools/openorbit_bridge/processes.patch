@@ -1,0 +1,49 @@
+diff --git a/server/panel/processes.py b/server/panel/processes.py
+index 25cfc42..146c975 100644
+--- a/server/panel/processes.py
++++ b/server/panel/processes.py
+@@ -26,6 +26,17 @@ PORTS = {'web': (8090, 80), 'game': (8081, 7771)}
+ PORT_NAMES = {8090: 'Web login', 80: 'Web API', 8081: 'Game', 7771: 'Chat', 8099: 'Control channel'}
+ SCRIPTS = {'web': 'web.py', 'game': 'game.py'}
+ EARLY_EXIT_SEC = 15
++# LibreOrbit (https://github.com/BKNadir/LibreOrbit): with LIBREORBIT_EXE=<path to libreorbit(.exe)> the panel starts LibreOrbit instead
++# of the Python server for the services listed in LIBREORBIT_SERVICES (comma-separated, default "web"). Same arguments, ports and logs.
++LO_EXE = os.environ.get('LIBREORBIT_EXE')
++LO_SERVICES = {s.strip() for s in (os.environ.get('LIBREORBIT_SERVICES') or 'web').split(',') if s.strip()}
++
++
++def server_cmd(name, py=None):
++    """Start of a server's command line: LibreOrbit's executable when it is chosen for this service, otherwise python -I <script>."""
++    if LO_EXE and os.path.isfile(LO_EXE) and name in LO_SERVICES:
++        return [LO_EXE, name]
++    return [py or python_exe(), '-I', os.path.join(SERVER, SCRIPTS[name])]
+ 
+ 
+ def python_exe():
+@@ -184,6 +195,8 @@ def process_info(pid):
+ def is_our_server(info):
+     """Whether this is this project's web.py / game.py process (from the command line)?"""
+     c = (info.get('command') or '').lower().replace('/', '\\')
++    if 'libreorbit' in (info.get('name') or '').lower():
++        return True
+     return 'python' in (info.get('name') or '').lower() and any(os.path.join(SERVER, s).lower() in c or
+                                                              ('\\server\\%s' % s) in c for s in SCRIPTS.values())
+ 
+@@ -452,7 +465,7 @@ class Manager:
+                 if busy:
+                     raise RuntimeError(_('Port %s (%s) is held by another process. Close it on the Server page or quit that program.',
+                                          '/'.join(map(str, busy)), _(PORT_NAMES[busy[0]])))
+-                cmd = [py, '-I', os.path.join(SERVER, SCRIPTS[name]), self.logs, '--profile=%s' % profile]
++                cmd = server_cmd(name, py) + [self.logs, '--profile=%s' % profile]
+                 stop_file = None
+                 env = {'OO_WORLD': world} if world else None
+                 if name == 'web' and env_json:       # the session of the server's own player (multiplayer SETTINGS['local'])
+@@ -498,7 +511,7 @@ class Manager:
+             if busy:
+                 raise RuntimeError(_('Port %s (%s) is held by another process. Close it on the Server page or quit that program.',
+                                      '/'.join(map(str, busy)), _(PORT_NAMES[busy[0]])))
+-            cmd = [python_exe(), '-I', os.path.join(SERVER, SCRIPTS['web']), self.logs, '--profile=%s' % profile] + list(args)
++            cmd = server_cmd('web') + [self.logs, '--profile=%s' % profile] + list(args)
+             self.servers['web'] = s = Process('web', cmd, os.path.join(self.logs, 'web_console.log')).start()
+             self.profile, self.slot, self.guest = profile, slot, True
+             deadline = time.time() + 15

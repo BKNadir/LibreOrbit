@@ -1,0 +1,13 @@
+[package]
+name = "lo-core"
+description = "LibreOrbit shared pieces: install layout, game data with World Editor patches, Python-compatible JSON, logs"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+chrono.workspace = true
+serde_json.workspace = true

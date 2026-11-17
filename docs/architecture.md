@@ -18,7 +18,8 @@ mode créatif) viennent ensuite, sur une base dont le comportement est déjà v�
 | OpenOrbit (Python) | Rôle | Ports | LibreOrbit |
 | --- | --- | --- | --- |
 | `protocol.py` | protocole du client | | `lo-protocol` ✅ |
-| `web.py` | connexion web du client (links.php, login.php, maps.php), fichiers CDN | 8090, 80 (+843, 9339, 8082) | `lo-web` |
+| `web.py` | connexion web du client (links.php, login.php, maps.php), fichiers CDN | 8090, 80 (+843, 9339, 8082) | `lo-web` ✅ |
+| `paths.py`, `game_data.py`, `platform_compat.py` | emplacements, données avec les patchs du World Editor | | `lo-core` ✅ |
 | `game.py` | sessions, connexion, paquets de bienvenue, routage des requêtes | 8081 | `lo-game` |
 | `world.py` et une centaine de modules | simulation des cartes, combat, systèmes du jeu | | `lo-game` (un module par système) |
 | `chat.py` | tchat (protocole « AChat » / Infinicast) | 7771 | `lo-chat` |
@@ -32,13 +33,14 @@ Le tout sera livré comme un seul exécutable (`libreorbit`), avec des sous-comm
 
 ```
 crates/
+  lo-core/       emplacements, données + mondes, JSON façon Python, logs ✅
   lo-protocol/   protocole du client                                   ✅
   lo-save/       sauvegardes (même format que profile.json d'OpenOrbit) à venir
-  lo-web/        connexion web du client (8090, 80)                    à venir
+  lo-web/        connexion web du client (8090, 80)                    ✅
   lo-chat/       tchat (7771)                                          à venir
   lo-game/       sessions, cartes, systèmes du jeu (8081)              à venir
   lo-panel/      panneau : API HTTP + service d'une interface          à venir
-  libreorbit/    l'exécutable qui assemble le tout                     à venir
+  libreorbit/    l'exécutable qui assemble le tout (service `web`)     ✅
 frontends/
   openorbit/     interface d'OpenOrbit, copiée telle quelle            ✅
   <nouvelle>/    seconde interface, plus tard
@@ -47,7 +49,7 @@ docs/            architecture, décisions, API du panneau
 tools/           outils de développement (comparaison avec OpenOrbit)
 ```
 
-Règles de dépendance : `lo-protocol` ne dépend de rien d'autre ; `lo-save` non plus ; `lo-game`, `lo-web`
+Règles de dépendance : `lo-core` et `lo-protocol` ne dépendent de rien d'autre ; `lo-save` seulement de `lo-core` ; `lo-game`, `lo-web`
 et `lo-chat` utilisent les deux premiers ; `lo-panel` utilise `lo-save` et pilote les services ; seul
 l'exécutable `libreorbit` les assemble. Le panneau ne connaît les interfaces que comme des dossiers de
 fichiers statiques : l'API est le seul contrat entre les deux ([`panel-api.md`](panel-api.md),
@@ -74,11 +76,24 @@ des marqueurs `@…` depuis la sauvegarde.
 
 Pour garder l'interface identique dès le début, deux étapes :
 
-1. Le panneau Python d'OpenOrbit lance l'exécutable LibreOrbit au lieu de `web.py` et `game.py`
-   (petite modification de `panel/processes.py`). Cela permet de tester le serveur Rust dans les vraies
+1. Le panneau Python d'OpenOrbit lance l'exécutable LibreOrbit au lieu de `web.py` et `game.py`, service par
+   service ([`tools/openorbit_bridge`](../tools/openorbit_bridge/README.md) : un petit correctif de
+   `panel/processes.py` et la variable `LIBREORBIT_EXE`). Cela permet de tester le serveur Rust dans les vraies
    conditions sans attendre le portage du panneau.
 2. Le panneau est porté en Rust (carte 14) : il sert `frontends/openorbit/` et la même API HTTP,
    et le Python n'est plus nécessaire. Une seconde interface pourra ensuite être ajoutée dans `frontends/`.
+
+## Serveur web (`lo-web`)
+
+* Mêmes routes, mêmes réponses et mêmes journaux que `web.py` (sessions multi-clients, langue de l'écran de
+  connexion, guides des portails et de Galaxy Trek avec les patchs du monde choisi, fichiers CDN et
+  téléchargement des images du jeu à la première demande, ports TCP 843/9339/8082 seulement journalisés).
+* Vérification : `tools/web_diff/compare.py` lance `web.py` puis LibreOrbit sur les vrais ports avec une copie de
+  la même sauvegarde, envoie 38 requêtes et compare statut, en-têtes, corps, `http.log`, `unknown.log`, `tcp.log`
+  et `web_settings.json`, dans le monde standard et avec un monde du World Editor : aucune différence.
+* Écart volontaire : une réponse 204 (préflight CORS) n'a pas d'en-tête `Content-Length`, comme l'exige HTTP ;
+  `web.py` envoie `Content-Length: 0`. Les navigateurs acceptent les deux.
+* Pas repris : la migration des sauvegardes de l'ancien format v1 (`save_migration.py`), faite par le panneau.
 
 ## Protocole (`lo-protocol`)
 

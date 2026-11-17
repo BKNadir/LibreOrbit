@@ -1,0 +1,1100 @@
+{
+ "collectors": {
+  "1": {
+   "name": "dispatch_retriever_a01",
+   "code": "A-01",
+   "series": "ammo",
+   "tier": 1,
+   "description": "dispatch_label_description_retriever_a01",
+   "duration_sec": 10800,
+   "fee": {
+    "currency_credits": 200000
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "2": {
+   "name": "dispatch_retriever_a02",
+   "code": "A-02",
+   "series": "ammo",
+   "tier": 2,
+   "description": "dispatch_label_description_retriever_a02",
+   "duration_sec": 21600,
+   "fee": {
+    "currency_uridium": 2000
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "3": {
+   "name": "dispatch_retriever_a03",
+   "code": "A-03",
+   "series": "ammo",
+   "tier": 3,
+   "description": "dispatch_label_description_retriever_a03",
+   "duration_sec": 21600,
+   "fee": {
+    "currency_uridium": 2000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "4": {
+   "name": "dispatch_retriever_a04",
+   "code": "A-04",
+   "series": "ammo",
+   "tier": 4,
+   "description": "dispatch_label_description_retriever_a04",
+   "duration_sec": 32400,
+   "fee": {
+    "currency_uridium": 5000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "5": {
+   "name": "dispatch_retriever_a05",
+   "code": "A-05",
+   "series": "ammo",
+   "tier": 5,
+   "description": "dispatch_label_description_retriever_a05",
+   "duration_sec": 43200,
+   "fee": {
+    "currency_uridium": 10000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "6": {
+   "name": "dispatch_retriever_a06",
+   "code": "A-06",
+   "series": "ammo",
+   "tier": 6,
+   "description": "dispatch_label_description_retriever_a06",
+   "duration_sec": 43200,
+   "fee": {
+    "currency_uridium": 10000,
+    "resource_collectable_permit-plus": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "7": {
+   "name": "dispatch_retriever_b01",
+   "code": "B-01",
+   "series": "basic",
+   "tier": 1,
+   "description": "dispatch_label_description_retriever_b01",
+   "duration_sec": 10800,
+   "fee": {
+    "currency_credits": 200000
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "8": {
+   "name": "dispatch_retriever_b02",
+   "code": "B-02",
+   "series": "basic",
+   "tier": 2,
+   "description": "dispatch_label_description_retriever_b02",
+   "duration_sec": 21600,
+   "fee": {
+    "currency_uridium": 2000
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "9": {
+   "name": "dispatch_retriever_b03",
+   "code": "B-03",
+   "series": "basic",
+   "tier": 3,
+   "description": "dispatch_label_description_retriever_b03",
+   "duration_sec": 21600,
+   "fee": {
+    "currency_uridium": 2000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "10": {
+   "name": "dispatch_retriever_b04",
+   "code": "B-04",
+   "series": "basic",
+   "tier": 4,
+   "description": "dispatch_label_description_retriever_b04",
+   "duration_sec": 32400,
+   "fee": {
+    "currency_uridium": 5000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "11": {
+   "name": "dispatch_retriever_b05",
+   "code": "B-05",
+   "series": "basic",
+   "tier": 5,
+   "description": "dispatch_label_description_retriever_b05",
+   "duration_sec": 43200,
+   "fee": {
+    "currency_uridium": 10000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "12": {
+   "name": "dispatch_retriever_b06",
+   "code": "B-06",
+   "series": "basic",
+   "tier": 6,
+   "description": "dispatch_label_description_retriever_b06",
+   "duration_sec": 43200,
+   "fee": {
+    "currency_uridium": 10000,
+    "resource_collectable_permit-plus": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "19": {
+   "name": "dispatch_retriever_h03",
+   "code": "H-03",
+   "series": "hitac",
+   "tier": 3,
+   "description": "dispatch_label_description_retriever_h03",
+   "duration_sec": 18000,
+   "fee": {
+    "currency_uridium": 5000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "20": {
+   "name": "dispatch_retriever_h04",
+   "code": "H-04",
+   "series": "hitac",
+   "tier": 4,
+   "description": "dispatch_label_description_retriever_h04",
+   "duration_sec": 25200,
+   "fee": {
+    "currency_uridium": 10000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "21": {
+   "name": "dispatch_retriever_h05",
+   "code": "H-05",
+   "series": "hitac",
+   "tier": 5,
+   "description": "dispatch_label_description_retriever_h05",
+   "duration_sec": 32400,
+   "fee": {
+    "currency_uridium": 15000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "13": {
+   "name": "dispatch_retriever_r01",
+   "code": "R-01",
+   "series": "resource",
+   "tier": 1,
+   "description": "dispatch_label_description_retriever_r01",
+   "duration_sec": 10800,
+   "fee": {
+    "currency_credits": 200000
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "14": {
+   "name": "dispatch_retriever_r02",
+   "code": "R-02",
+   "series": "resource",
+   "tier": 2,
+   "description": "dispatch_label_description_retriever_r02",
+   "duration_sec": 21600,
+   "fee": {
+    "currency_uridium": 2000
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "15": {
+   "name": "dispatch_retriever_r03",
+   "code": "R-03",
+   "series": "resource",
+   "tier": 3,
+   "description": "dispatch_label_description_retriever_r03",
+   "duration_sec": 21600,
+   "fee": {
+    "currency_uridium": 2000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "16": {
+   "name": "dispatch_retriever_r04",
+   "code": "R-04",
+   "series": "resource",
+   "tier": 4,
+   "description": "dispatch_label_description_retriever_r04",
+   "duration_sec": 32400,
+   "fee": {
+    "currency_uridium": 5000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "17": {
+   "name": "dispatch_retriever_r05",
+   "code": "R-05",
+   "series": "resource",
+   "tier": 5,
+   "description": "dispatch_label_description_retriever_r05",
+   "duration_sec": 43200,
+   "fee": {
+    "currency_uridium": 10000,
+    "resource_collectable_permit": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  },
+  "18": {
+   "name": "dispatch_retriever_r06",
+   "code": "R-06",
+   "series": "resource",
+   "tier": 6,
+   "description": "dispatch_label_description_retriever_r06",
+   "duration_sec": 43200,
+   "fee": {
+    "currency_uridium": 10000,
+    "resource_collectable_permit-plus": 1
+   },
+   "instant": {
+    "resource_collectable_quickcoupon": 1
+   }
+  }
+ },
+ "_retrievers": "From the client's code (DarkOrbit.DispatchRetrieverDefinition$$InitList): name/description are the client's text keys, series (ammo/basic/resource/hitac), tier, duration_sec, fee (sending), instant (instant finish).",
+ "rewards": {
+  "A-01": [
+   "resource_collectable_permit",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-2026",
+   "ammunition_mine_acm-01"
+  ],
+  "A-02": [
+   "resource_collectable_permit",
+   "ammunition_laser_lcb-10",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_laser_rsb-75",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-2026",
+   "ammunition_rocket_plt-3030",
+   "ammunition_mine_acm-01"
+  ],
+  "A-03": [
+   "resource_collectable_permit",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_laser_rsb-75",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-3030",
+   "ammunition_mine_acm-01"
+  ],
+  "A-04": [
+   "resource_collectable_permit",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_laser_rsb-75",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-3030",
+   "ammunition_mine_acm-01"
+  ],
+  "A-05": [
+   "resource_collectable_permit",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_laser_rsb-75",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-3030",
+   "ammunition_mine_acm-01"
+  ],
+  "A-06": [
+   "resource_collectable_permit",
+   "resource_collectable_permit-plus",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_laser_rsb-75",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-3030",
+   "ammunition_mine_acm-01",
+   "ammunition_specialammo_emp-01"
+  ],
+  "B-01": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-2026",
+   "resource_pet-fuel",
+   "resource_collectable_quickcoupon",
+   "resource_jumpvoucher",
+   "resource_logfile",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum"
+  ],
+  "B-02": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "ammunition_laser_lcb-10",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-2026",
+   "ammunition_rocket_plt-3030",
+   "resource_pet-fuel",
+   "resource_collectable_quickcoupon",
+   "resource_jumpvoucher",
+   "resource_repairvoucher",
+   "resource_logfile",
+   "resource_collectable_isochronate",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum"
+  ],
+  "B-03": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-3030",
+   "resource_pet-fuel",
+   "resource_collectable_quickcoupon",
+   "resource_jumpvoucher",
+   "resource_repairvoucher",
+   "resource_logfile",
+   "resource_collectable_isochronate",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum"
+  ],
+  "B-04": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-3030",
+   "resource_pet-fuel",
+   "resource_collectable_quickcoupon",
+   "resource_jumpvoucher",
+   "resource_repairvoucher",
+   "resource_logfile",
+   "resource_collectable_isochronate",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum"
+  ],
+  "B-05": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-3030",
+   "resource_pet-fuel",
+   "resource_collectable_quickcoupon",
+   "resource_jumpvoucher",
+   "resource_repairvoucher",
+   "resource_logfile",
+   "resource_collectable_isochronate",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum"
+  ],
+  "B-06": [
+   "resource_collectable_permit",
+   "resource_collectable_permit-plus",
+   "resource_collectable_solidus",
+   "ammunition_laser_mcb-25",
+   "ammunition_laser_mcb-50",
+   "ammunition_laser_ucb-100",
+   "ammunition_rocket_plt-2021",
+   "ammunition_rocket_plt-3030",
+   "resource_pet-fuel",
+   "resource_collectable_quickcoupon",
+   "resource_jumpvoucher",
+   "resource_repairvoucher",
+   "resource_logfile",
+   "resource_collectable_isochronate",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum"
+  ],
+  "H-03": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "ammunition_laser_ucb-100",
+   "resource_collectable_isochronate",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin"
+  ],
+  "H-04": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "ammunition_laser_ucb-100",
+   "resource_collectable_isochronate",
+   "resource_collectable_quickcoupon",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin",
+   "resource_collectable_hydra-alloy",
+   "resource_collectable_neptune-alloy",
+   "resource_collectable_triskelion-alloy",
+   "resource_collectable_ouroboros-alloy"
+  ],
+  "H-05": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "ammunition_laser_ucb-100",
+   "resource_collectable_isochronate",
+   "resource_collectable_quickcoupon",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin",
+   "resource_collectable_hydra-alloy",
+   "resource_collectable_neptune-alloy",
+   "resource_collectable_triskelion-alloy",
+   "resource_collectable_ouroboros-alloy"
+  ],
+  "R-01": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "resource_collectable_quickcoupon",
+   "resource_collectable_diametrion",
+   "resource_collectable_polychromium",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin",
+   "resource_collectable_hydra-alloy",
+   "resource_collectable_neptune-alloy",
+   "resource_collectable_triskelion-alloy",
+   "resource_collectable_ouroboros-alloy",
+   "resource_pet-fuel",
+   "resource_jumpvoucher",
+   "resource_logfile",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum"
+  ],
+  "R-02": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "resource_collectable_quickcoupon",
+   "resource_collectable_diametrion",
+   "resource_collectable_polychromium",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin",
+   "resource_collectable_hydra-alloy",
+   "resource_collectable_neptune-alloy",
+   "resource_collectable_triskelion-alloy",
+   "resource_collectable_ouroboros-alloy",
+   "resource_pet-fuel",
+   "resource_jumpvoucher",
+   "resource_logfile",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum",
+   "resource_collectable_isochronate",
+   "resource_collectable_axion-beam-regulator",
+   "resource_collectable_indoctrineoil"
+  ],
+  "R-03": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "resource_collectable_quickcoupon",
+   "resource_collectable_diametrion",
+   "resource_collectable_polychromium",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin",
+   "resource_collectable_hydra-alloy",
+   "resource_collectable_neptune-alloy",
+   "resource_collectable_triskelion-alloy",
+   "resource_collectable_ouroboros-alloy",
+   "resource_pet-fuel",
+   "resource_jumpvoucher",
+   "resource_logfile",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum",
+   "resource_collectable_isochronate",
+   "resource_collectable_axion-beam-regulator",
+   "resource_collectable_indoctrineoil"
+  ],
+  "R-04": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "resource_collectable_quickcoupon",
+   "resource_collectable_diametrion",
+   "resource_collectable_polychromium",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin",
+   "resource_collectable_hydra-alloy",
+   "resource_collectable_neptune-alloy",
+   "resource_collectable_triskelion-alloy",
+   "resource_collectable_ouroboros-alloy",
+   "resource_pet-fuel",
+   "resource_jumpvoucher",
+   "resource_logfile",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum",
+   "resource_collectable_isochronate",
+   "resource_collectable_axion-beam-regulator",
+   "resource_collectable_indoctrineoil"
+  ],
+  "R-05": [
+   "resource_collectable_permit",
+   "resource_collectable_solidus",
+   "resource_collectable_quickcoupon",
+   "resource_collectable_diametrion",
+   "resource_collectable_polychromium",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin",
+   "resource_collectable_hydra-alloy",
+   "resource_collectable_neptune-alloy",
+   "resource_collectable_triskelion-alloy",
+   "resource_collectable_ouroboros-alloy",
+   "resource_pet-fuel",
+   "resource_jumpvoucher",
+   "resource_logfile",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum",
+   "resource_collectable_isochronate",
+   "resource_collectable_axion-beam-regulator",
+   "resource_collectable_indoctrineoil"
+  ],
+  "R-06": [
+   "resource_collectable_permit",
+   "resource_collectable_permit-plus",
+   "resource_collectable_solidus",
+   "resource_collectable_quickcoupon",
+   "resource_collectable_diametrion",
+   "resource_collectable_polychromium",
+   "resource_collectable_bifenon",
+   "resource_collectable_kyhalon",
+   "resource_collectable_tetrathrin",
+   "resource_collectable_hydra-alloy",
+   "resource_collectable_neptune-alloy",
+   "resource_collectable_triskelion-alloy",
+   "resource_collectable_ouroboros-alloy",
+   "resource_collectable_isochronate",
+   "resource_collectable_axion-beam-regulator",
+   "resource_collectable_indoctrineoil",
+   "resource_pet-fuel",
+   "resource_jumpvoucher",
+   "resource_logfile",
+   "resource_collectable_scrapium",
+   "resource_collectable_mucosum"
+  ]
+ },
+ "base_count": {
+  "resource_collectable_permit": 1,
+  "resource_collectable_permit-plus": 1,
+  "ammunition_laser_lcb-10": 2000,
+  "ammunition_laser_mcb-25": 1000,
+  "ammunition_laser_mcb-50": 500,
+  "ammunition_laser_ucb-100": 250,
+  "ammunition_laser_rsb-75": 100,
+  "ammunition_rocket_plt-2021": 50,
+  "ammunition_rocket_plt-2026": 100,
+  "ammunition_rocket_plt-3030": 25,
+  "ammunition_mine_acm-01": 5,
+  "ammunition_specialammo_emp-01": 2,
+  "resource_pet-fuel": 1000,
+  "resource_collectable_quickcoupon": 1,
+  "resource_jumpvoucher": 1,
+  "resource_repairvoucher": 1,
+  "resource_logfile": 1,
+  "resource_collectable_scrapium": 2,
+  "resource_collectable_mucosum": 8,
+  "resource_collectable_isochronate": 5,
+  "resource_collectable_bifenon": 4,
+  "resource_collectable_kyhalon": 5,
+  "resource_collectable_tetrathrin": 1,
+  "resource_collectable_hydra-alloy": 1,
+  "resource_collectable_neptune-alloy": 1,
+  "resource_collectable_triskelion-alloy": 1,
+  "resource_collectable_ouroboros-alloy": 1,
+  "resource_collectable_diametrion": 5,
+  "resource_collectable_polychromium": 6,
+  "resource_collectable_axion-beam-regulator": 5,
+  "resource_collectable_indoctrineoil": 1
+ },
+ "single": [
+  "resource_collectable_indoctrineoil",
+  "resource_collectable_permit",
+  "resource_collectable_permit-plus",
+  "resource_collectable_quickcoupon",
+  "resource_jumpvoucher",
+  "resource_logfile",
+  "resource_repairvoucher"
+ ],
+ "reward_count": 4,
+ "tier_increase": 0.5,
+ "sparse": {
+  "resource_collectable_permit": 0.3,
+  "resource_collectable_permit-plus": 0.15,
+  "resource_collectable_quickcoupon": 0.3,
+  "resource_repairvoucher": 0.5,
+  "resource_jumpvoucher": 0.5,
+  "resource_collectable_indoctrineoil": 0.4,
+  "resource_collectable_hydra-alloy": 0.5,
+  "resource_collectable_neptune-alloy": 0.5,
+  "resource_collectable_triskelion-alloy": 0.5,
+  "resource_collectable_ouroboros-alloy": 0.5
+ },
+ "slots": {
+  "start": 2,
+  "maximum": 5,
+  "prices": {
+   "3": {
+    "currency_uridium": 50000
+   },
+   "4": {
+    "currency_uridium": 100000
+   },
+   "5": {
+    "currency_uridium": 100000
+   }
+  }
+ },
+ "dispatch_gunleri": [
+  0,
+  4
+ ],
+ "dispatch_day_multiplier": 1.5,
+ "gate": {
+  "ggeu": "resource_collectable_ggeu",
+  "duration_sec": 3600
+ },
+ "fixed": {
+  "ammo": {
+   "currency_experience": 10000
+  },
+  "basic": {
+   "resource_collectable_solidus": 2,
+   "currency_experience": 10000
+  },
+  "resource": {
+   "resource_collectable_solidus": 2,
+   "currency_experience": 10000
+  },
+  "hitac": {
+   "resource_collectable_solidus": 2,
+   "currency_experience": 10000
+  }
+ },
+ "_stable_hash": "Fixed items of each return, per series (real recording 20261025_152841_gercek lines 936 and 1097: the first two items of two R-01 returns were Solidus x2 and currency_experience 10000). The Ammunition series pool has no Solidus: only EXP. Quantities grow with the retriever's tier multiplier; the fixed items of the other series (B, H, A) are not in the recording: the R-01 form is adaptation.",
+ "event_rewards": {
+  "chaos_omen": {
+   "resource_collectable_chaos-fragment": {
+    "R-01": [
+     5,
+     10
+    ],
+    "R-02": [
+     10,
+     20
+    ],
+    "R-03": [
+     15,
+     25
+    ],
+    "R-04": [
+     20,
+     30
+    ],
+    "R-05": [
+     35,
+     50
+    ],
+    "R-06": [
+     65,
+     80
+    ],
+    "gate": [
+     5,
+     10
+    ]
+   }
+  },
+  "protegit": {
+   "resource_collectable_chaos-fragment": {
+    "R-01": [
+     5,
+     10
+    ],
+    "R-02": [
+     10,
+     20
+    ],
+    "R-03": [
+     15,
+     25
+    ],
+    "R-04": [
+     20,
+     30
+    ],
+    "R-05": [
+     35,
+     50
+    ],
+    "R-06": [
+     65,
+     80
+    ],
+    "gate": [
+     5,
+     10
+    ]
+   }
+  }
+ },
+ "_event_rewards": "Item added to the return while the event runs (event_calendar.py event key -> lootId -> retriever code: [min, max]). darkorbitwiki events/chaos-omen: Chaos Fragment comes from Retriever Dispatch (R-01 5-10, R-02 10-20, R-03 15-25, R-04 20-30, R-05 35-50, R-06 65-80) and from Gate Dispatch; no quantity is given for the gate: 'gate' uses the R-01 range (adaptation). It continues in Protegit Pandemonium too (ETKINLIKLER-27); the quantities are not affected by the Dispatch Day multiplier.",
+ "_source": "Reward lists, slot prices, Dispatch Day (Monday, Friday) and gate dispatch (1 GGEU, the gate installed at wave 1) from the wiki (darkorbitwiki.com/dispatch-retriever, /dispatch-gate; belgeler/arastirma/sistemler_modlar.md 1.15). Adaptation (the wiki gives no quantities or probabilities): in each dispatch reward_count different rewards from the list; quantity base_count x (1 + tier_increase x (tier-1)), single ones 1; rare ones have a low selection weight; on Dispatch Day quantities x1.5; gate dispatch 1 hour. According to the real server recording (20261025_152841_gercek): 4 different random items per return and fixed items (fixed); tier 1 quantities from the recording (Scrap 2, Mucosum 8, Tetrathrin 1, Bifenon 4, Polychromium 6, each alloy 1); quantities of items not in the recording are adaptation. Event rewards: event_rewards.",
+ "tier_count": {
+  "resource_collectable_mucosum": [
+   6,
+   22,
+   40,
+   75,
+   75,
+   90
+  ],
+  "resource_collectable_scrapium": [
+   2,
+   18,
+   25,
+   30,
+   34,
+   45
+  ],
+  "resource_logfile": [
+   1,
+   4,
+   4,
+   19,
+   19,
+   22
+  ],
+  "resource_repairvoucher": [
+   5,
+   12,
+   12,
+   41,
+   49,
+   60
+  ],
+  "resource_pet-fuel": [
+   146,
+   120,
+   120,
+   280,
+   280,
+   300
+  ],
+  "ammunition_laser_rsb-75": [
+   100,
+   300,
+   600,
+   950,
+   1550,
+   2000
+  ],
+  "ammunition_mine_acm-01": [
+   16,
+   18,
+   21,
+   35,
+   90,
+   120
+  ],
+  "ammunition_rocket_plt-3030": [
+   60,
+   140,
+   180,
+   220,
+   530,
+   700
+  ],
+  "ammunition_laser_mcb-50": [
+   354,
+   700,
+   850,
+   2100,
+   4200,
+   5500
+  ],
+  "ammunition_laser_mcb-25": [
+   1000,
+   1500,
+   2000,
+   2500,
+   3500,
+   4500
+  ],
+  "ammunition_laser_ucb-100": [
+   250,
+   400,
+   550,
+   700,
+   750,
+   1000
+  ],
+  "ammunition_rocket_plt-2021": [
+   50,
+   80,
+   110,
+   300,
+   485,
+   600
+  ],
+  "ammunition_laser_lcb-10": [
+   700,
+   800,
+   1500,
+   2000,
+   2500,
+   3000
+  ],
+  "ammunition_rocket_plt-2026": [
+   80,
+   130,
+   180,
+   230,
+   280,
+   330
+  ],
+  "resource_collectable_hydra-alloy": [
+   1,
+   3,
+   4,
+   8,
+   30,
+   40
+  ],
+  "resource_collectable_neptune-alloy": [
+   1,
+   3,
+   4,
+   8,
+   30,
+   40
+  ],
+  "resource_collectable_triskelion-alloy": [
+   1,
+   3,
+   4,
+   8,
+   30,
+   40
+  ],
+  "resource_collectable_ouroboros-alloy": [
+   1,
+   3,
+   4,
+   8,
+   30,
+   40
+  ],
+  "resource_collectable_isochronate": [
+   5,
+   7,
+   9,
+   12,
+   17,
+   22
+  ],
+  "resource_collectable_axion-beam-regulator": [
+   5,
+   8,
+   12,
+   16,
+   20,
+   25
+  ],
+  "resource_collectable_indoctrineoil": [
+   1,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "resource_collectable_kyhalon": [
+   5,
+   5,
+   6,
+   6,
+   7,
+   9
+  ],
+  "resource_collectable_tetrathrin": [
+   1,
+   2,
+   4,
+   8,
+   15,
+   18
+  ],
+  "resource_collectable_bifenon": [
+   4,
+   8,
+   15,
+   25,
+   42,
+   50
+  ]
+ },
+ "fixed_tier": {
+  "ammo": {
+   "currency_experience": [
+    10000,
+    10000,
+    50000,
+    50000,
+    100000,
+    100000
+   ],
+   "ammunition_laser_lcb-10": [
+    700,
+    800,
+    null,
+    null,
+    null,
+    null
+   ],
+   "ammunition_rocket_plt-2026": [
+    80,
+    130,
+    null,
+    null,
+    null,
+    null
+   ],
+   "ammunition_laser_mcb-25": [
+    null,
+    null,
+    2000,
+    2500,
+    3900,
+    4500
+   ]
+  },
+  "resource": {
+   "resource_collectable_solidus": [
+    2,
+    6,
+    12,
+    30,
+    100,
+    150
+   ],
+   "currency_experience": [
+    10000,
+    10000,
+    50000,
+    50000,
+    100000,
+    100000
+   ]
+  },
+  "basic": {
+   "resource_collectable_solidus": [
+    3,
+    9,
+    15,
+    40,
+    100,
+    150
+   ],
+   "currency_experience": [
+    10000,
+    10000,
+    50000,
+    50000,
+    100000,
+    100000
+   ]
+  },
+  "hitac": {
+   "resource_collectable_solidus": [
+    2,
+    6,
+    18,
+    40,
+    55,
+    75
+   ],
+   "currency_experience": [
+    10000,
+    10000,
+    50000,
+    50000,
+    100000,
+    100000
+   ]
+  }
+ },
+ "_tier_count": "Official Turkish forum 160334 'Collectors and Gate Dispatch': 91 in-game return windows (belgeler/forum_tr/gorseller/160334/toplayici_ornekleri.json). Fixed Solidus R 2/6/12/30/100, B 3/9/15/40/100, H-03..05 18/40/55; the A series has no Solidus, A-01/A-02 give LCB-10 and PLT-2026 on every return, A-03..A-05 MCB-25. Guaranteed TP tier 1-2 10,000, 3-4 50,000, 5 100,000 (forum). The quantity of side items comes from the item x tier table (interpolated between examples; tiers without examples and tier 6 are adaptation); items not in the table use the old linear tier_increase. Dispatch Day x1.5 for all."
+}

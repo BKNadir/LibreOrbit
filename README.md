@@ -5,14 +5,15 @@ réécriture inspirée d'[OpenOrbit](https://github.com/kaanumay/OpenOrbit) (Kaa
 avec ses propres objectifs : un serveur commun léger (jusqu'à un Raspberry Pi), des sauvegardes
 officielles ou modifiées, des transferts entre serveurs et un mode créatif admin journalisé.
 
-> État : début du développement. Seul le protocole du jeu est en place. Le jeu n'est pas encore jouable.
+> État : début du développement. Le protocole et le serveur web de connexion sont en place ; le serveur de jeu
+> n'existe pas encore, le jeu n'est donc pas jouable avec LibreOrbit seul.
 
 ## Avancement
 
 | Étape | État |
 | --- | --- |
 | 1. Protocole : 1 374 messages, décodage, encodage, tramage, compression | ✅ vérifié octet par octet contre OpenOrbit |
-| 2. Connexion du client jusqu'à l'écran de jeu | à faire |
+| 2. Connexion du client jusqu'à l'écran de jeu | en cours : serveur web ✅ (identique à `web.py`), serveur de jeu à faire |
 | 3. Outil de comparaison avec le serveur d'OpenOrbit | à faire (le protocole a déjà le sien) |
 | 4 à 15. Systèmes du jeu, panneau, éditeur | à faire (l'interface du panneau est déjà en place) |
 | 16 à 19. Serveur commun, sauvegardes officielles, transferts, mode créatif | à faire |
@@ -23,11 +24,14 @@ les décisions de conception dans [`docs/conception.md`](docs/conception.md).
 ## Organisation
 
 ```
+crates/lo-core       emplacements, données du jeu et mondes, JSON façon Python, journaux
 crates/lo-protocol   protocole du client (décodage, encodage, tramage)
+crates/lo-web        serveur web de connexion (ports 8090 et 80)
+crates/libreorbit    l'exécutable (`libreorbit web …`)
 frontends/openorbit  interface du panneau d'OpenOrbit, copiée telle quelle
-data/                données reprises d'OpenOrbit (voir NOTICE.md)
+data/, cdn/          données et fichiers CDN repris d'OpenOrbit (voir NOTICE.md)
 docs/                architecture, décisions, API du panneau
-tools/protocol_diff  comparaison du protocole avec le code Python d'OpenOrbit
+tools/               comparaisons avec OpenOrbit (protocole, serveur web), lancement depuis son panneau
 ```
 
 ## Développement
@@ -39,12 +43,14 @@ cargo test                     # tous les tests, dont la comparaison avec OpenOr
 cargo clippy --all-targets
 ```
 
-Pour comparer le protocole avec OpenOrbit sur un nouveau jeu de cas aléatoires (il faut Python 3
-et une copie d'OpenOrbit) :
+Comparaisons avec OpenOrbit (il faut Python 3 et une copie d'OpenOrbit) :
 
 ```sh
-tools/protocol_diff/run.sh ../OpenOrbit
+tools/protocol_diff/run.sh ../OpenOrbit                                              # protocole, cas aléatoires
+sudo python3 -I tools/web_diff/compare.py ../OpenOrbit target/debug/libreorbit .     # serveur web (ports 80, 8090…)
 ```
+
+Pour essayer LibreOrbit dans le panneau d'OpenOrbit : [`tools/openorbit_bridge`](tools/openorbit_bridge/README.md).
 
 ## Licence et mentions
 

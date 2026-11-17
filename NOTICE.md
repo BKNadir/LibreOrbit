@@ -14,7 +14,12 @@ The behaviour of the server, the protocol description and the game data files
 follow OpenOrbit as of commit `5511c73783b4cd3d2b298e9bdd680a02951667db`
 (2026-11-07).
 
-## Files under `data/`
+## Files under `data/` and `cdn/`
+
+`data/` and `cdn/` are unchanged copies of OpenOrbit's `server/data/` and `server/cdn/` at the commit above
+(MIT, OpenOrbit). OpenOrbit compiled them from the DarkOrbit client, records of the official game and
+darkorbitwiki.com (see OpenOrbit's documentation for each file). Game images that the web server downloads from the
+official CDN on first request are added to `cdn/` locally and are not part of the repository.
 
 | File | Origin |
 | --- | --- |

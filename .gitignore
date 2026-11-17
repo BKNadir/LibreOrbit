@@ -1,2 +1,4 @@
 target/
 *.jsonl.tmp
+/save/
+/cdn/do_img/
