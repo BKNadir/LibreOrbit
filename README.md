@@ -14,7 +14,7 @@ officielles ou modifiées, des transferts entre serveurs et un mode créatif adm
 | 1. Protocole : 1 374 messages, décodage, encodage, tramage, compression | ✅ vérifié octet par octet contre OpenOrbit |
 | 2. Connexion du client jusqu'à l'écran de jeu | à faire |
 | 3. Outil de comparaison avec le serveur d'OpenOrbit | à faire (le protocole a déjà le sien) |
-| 4 à 15. Systèmes du jeu, panneau, éditeur | à faire |
+| 4 à 15. Systèmes du jeu, panneau, éditeur | à faire (l'interface du panneau est déjà en place) |
 | 16 à 19. Serveur commun, sauvegardes officielles, transferts, mode créatif | à faire |
 
 Le plan complet et les choix techniques sont dans [`docs/architecture.md`](docs/architecture.md),
@@ -24,8 +24,9 @@ les décisions de conception dans [`docs/conception.md`](docs/conception.md).
 
 ```
 crates/lo-protocol   protocole du client (décodage, encodage, tramage)
+frontends/openorbit  interface du panneau d'OpenOrbit, copiée telle quelle
 data/                données reprises d'OpenOrbit (voir NOTICE.md)
-docs/                architecture et décisions
+docs/                architecture, décisions, API du panneau
 tools/protocol_diff  comparaison du protocole avec le code Python d'OpenOrbit
 ```
 

@@ -28,6 +28,31 @@ mode créatif) viennent ensuite, sur une base dont le comportement est déjà v�
 
 Le tout sera livré comme un seul exécutable (`libreorbit`), avec des sous-commandes pour chaque service.
 
+## Organisation du dépôt
+
+```
+crates/
+  lo-protocol/   protocole du client                                   ✅
+  lo-save/       sauvegardes (même format que profile.json d'OpenOrbit) à venir
+  lo-web/        connexion web du client (8090, 80)                    à venir
+  lo-chat/       tchat (7771)                                          à venir
+  lo-game/       sessions, cartes, systèmes du jeu (8081)              à venir
+  lo-panel/      panneau : API HTTP + service d'une interface          à venir
+  libreorbit/    l'exécutable qui assemble le tout                     à venir
+frontends/
+  openorbit/     interface d'OpenOrbit, copiée telle quelle            ✅
+  <nouvelle>/    seconde interface, plus tard
+data/            données du jeu reprises d'OpenOrbit
+docs/            architecture, décisions, API du panneau
+tools/           outils de développement (comparaison avec OpenOrbit)
+```
+
+Règles de dépendance : `lo-protocol` ne dépend de rien d'autre ; `lo-save` non plus ; `lo-game`, `lo-web`
+et `lo-chat` utilisent les deux premiers ; `lo-panel` utilise `lo-save` et pilote les services ; seul
+l'exécutable `libreorbit` les assemble. Le panneau ne connaît les interfaces que comme des dossiers de
+fichiers statiques : l'API est le seul contrat entre les deux ([`panel-api.md`](panel-api.md),
+136 points d'accès).
+
 ## Séquence de connexion du client (étape 2)
 
 D'après `game.py`, `web.py` et `chat.py` :
@@ -52,8 +77,8 @@ Pour garder l'interface identique dès le début, deux étapes :
 1. Le panneau Python d'OpenOrbit lance l'exécutable LibreOrbit au lieu de `web.py` et `game.py`
    (petite modification de `panel/processes.py`). Cela permet de tester le serveur Rust dans les vraies
    conditions sans attendre le portage du panneau.
-2. Le panneau est porté en Rust (carte 14) : il sert les mêmes fichiers d'interface et la même API HTTP,
-   et le Python n'est plus nécessaire.
+2. Le panneau est porté en Rust (carte 14) : il sert `frontends/openorbit/` et la même API HTTP,
+   et le Python n'est plus nécessaire. Une seconde interface pourra ensuite être ajoutée dans `frontends/`.
 
 ## Protocole (`lo-protocol`)
 
