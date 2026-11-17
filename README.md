@@ -48,6 +48,12 @@ tools/protocol_diff/run.sh ../OpenOrbit
 
 ## Licence et mentions
 
-MIT, voir [`LICENSE`](LICENSE). LibreOrbit reprend des éléments d'OpenOrbit et conserve sa mention de
-copyright. DarkOrbit, son client, ses graphismes et ses textes appartiennent à Bigpoint GmbH ;
-LibreOrbit n'y est pas affilié et ne distribue pas le client. Détails dans [`NOTICE.md`](NOTICE.md).
+LibreOrbit est sous [PolyForm Noncommercial 1.0.0](LICENSE) : utilisation, copie, modification et partage
+libres pour un usage personnel ou non commercial. Toute utilisation commerciale (vente, produit ou service
+payant) demande l'accord écrit de BKNadir.
+
+Les parties reprises d'OpenOrbit (Kaan UMAY) restent sous licence MIT
+([`LICENSES/MIT-OpenOrbit.txt`](LICENSES/MIT-OpenOrbit.txt)) : l'interface `frontends/openorbit/`, les
+données de `data/` et ce qui est porté de son code. DarkOrbit, son client, ses graphismes et ses textes
+appartiennent à Bigpoint GmbH ; LibreOrbit n'y est pas affilié et ne distribue pas le client. Détails dans
+[`NOTICE.md`](NOTICE.md).
