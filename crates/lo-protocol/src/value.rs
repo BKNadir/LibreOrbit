@@ -17,6 +17,8 @@ pub enum Value {
     Null,
     Bool(bool),
     Int(i64),
+    /// An integral number beyond the i64 range (a double the client sent as an integer; a Python int in `protocol.py`).
+    BigInt(f64),
     Float(f64),
     Str(String),
     List(Vec<Value>),
@@ -151,7 +153,7 @@ impl Value {
     pub fn as_f64(&self) -> Option<f64> {
         match self {
             Value::Int(i) => Some(*i as f64),
-            Value::Float(f) => Some(*f),
+            Value::Float(f) | Value::BigInt(f) => Some(*f),
             _ => None,
         }
     }
@@ -190,7 +192,7 @@ impl Value {
             Value::Null => false,
             Value::Bool(b) => *b,
             Value::Int(i) => *i != 0,
-            Value::Float(f) => *f != 0.0,
+            Value::Float(f) | Value::BigInt(f) => *f != 0.0,
             Value::Str(s) => !s.is_empty(),
             Value::List(l) => !l.is_empty(),
             Value::Struct(_) => true,
@@ -203,7 +205,7 @@ impl Value {
             Value::Null => Json::Null,
             Value::Bool(b) => Json::Bool(*b),
             Value::Int(i) => Json::from(*i),
-            Value::Float(f) => match Number::from_f64(*f) {
+            Value::Float(f) | Value::BigInt(f) => match Number::from_f64(*f) {
                 Some(n) => Json::Number(n),
                 None => {
                     let tag = if f.is_nan() {
@@ -308,6 +310,7 @@ impl fmt::Display for Value {
             Value::Bool(b) => f.write_str(if *b { "True" } else { "False" }),
             Value::Int(i) => write!(f, "{i}"),
             Value::Float(x) => write!(f, "{x:.6}"),
+            Value::BigInt(x) => write!(f, "{x:.0}"),
             Value::Str(s) => write!(f, "{}", Json::String(s.clone())),
             Value::List(l) => {
                 f.write_str("[")?;

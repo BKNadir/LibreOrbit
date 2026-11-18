@@ -13,7 +13,7 @@ officielles ou modifiées, des transferts entre serveurs et un mode créatif adm
 | Étape | État |
 | --- | --- |
 | 1. Protocole : 1 374 messages, décodage, encodage, tramage, compression | ✅ vérifié octet par octet contre OpenOrbit |
-| 2. Connexion du client jusqu'à l'écran de jeu | en cours : serveur web ✅ (identique à `web.py`), serveur de jeu à faire |
+| 2. Connexion du client jusqu'à l'écran de jeu | en cours : serveur web ✅ (identique à `web.py`), serveur de jeu commencé ([plan](docs/portage-jeu.md)) |
 | 3. Outil de comparaison avec le serveur d'OpenOrbit | à faire (le protocole a déjà le sien) |
 | 4 à 15. Systèmes du jeu, panneau, éditeur | à faire (l'interface du panneau est déjà en place) |
 | 16 à 19. Serveur commun, sauvegardes officielles, transferts, mode créatif | à faire |
@@ -27,7 +27,9 @@ les décisions de conception dans [`docs/conception.md`](docs/conception.md).
 crates/lo-core       emplacements, données du jeu et mondes, JSON façon Python, journaux
 crates/lo-protocol   protocole du client (décodage, encodage, tramage)
 crates/lo-web        serveur web de connexion (ports 8090 et 80)
-crates/libreorbit    l'exécutable (`libreorbit web …`)
+crates/lo-game       serveur de jeu (port 8081), en cours
+crates/lo-probe      client de test scripté, pour comparer les serveurs
+crates/libreorbit    l'exécutable (`libreorbit web …`, `libreorbit game …`)
 frontends/openorbit  interface du panneau d'OpenOrbit, copiée telle quelle
 data/, cdn/          données et fichiers CDN repris d'OpenOrbit (voir NOTICE.md)
 docs/                architecture, décisions, API du panneau
@@ -48,6 +50,7 @@ Comparaisons avec OpenOrbit (il faut Python 3 et une copie d'OpenOrbit) :
 ```sh
 tools/protocol_diff/run.sh ../OpenOrbit                                              # protocole, cas aléatoires
 sudo python3 -I tools/web_diff/compare.py ../OpenOrbit target/debug/libreorbit .     # serveur web (ports 80, 8090…)
+python3 -I tools/game_diff/compare.py ../OpenOrbit target/debug/libreorbit target/debug/lo-probe .   # serveur de jeu
 ```
 
 Pour essayer LibreOrbit dans le panneau d'OpenOrbit : [`tools/openorbit_bridge`](tools/openorbit_bridge/README.md).

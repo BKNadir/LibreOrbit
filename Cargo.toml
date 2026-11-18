@@ -12,6 +12,7 @@ rust-version = "1.85"
 
 [workspace.dependencies]
 lo-core = { path = "crates/lo-core" }
+lo-game = { path = "crates/lo-game" }
 lo-protocol = { path = "crates/lo-protocol" }
 lo-web = { path = "crates/lo-web" }
 bytes = "1"

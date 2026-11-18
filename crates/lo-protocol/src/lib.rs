@@ -20,6 +20,7 @@
 //! expression the client's `read()` applies ([`Expr`]), and encoding applies the inverse.
 
 mod codec;
+pub mod display;
 mod expr;
 mod frame;
 mod spec;

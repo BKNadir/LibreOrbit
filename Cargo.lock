@@ -416,6 +416,8 @@ name = "libreorbit"
 version = "0.1.0"
 dependencies = [
  "lo-core",
+ "lo-game",
+ "lo-protocol",
  "lo-web",
  "tokio",
 ]
@@ -431,6 +433,23 @@ name = "lo-core"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "serde_json",
+]
+
+[[package]]
+name = "lo-game"
+version = "0.1.0"
+dependencies = [
+ "lo-core",
+ "lo-protocol",
+ "tokio",
+]
+
+[[package]]
+name = "lo-probe"
+version = "0.1.0"
+dependencies = [
+ "lo-protocol",
  "serde_json",
 ]
 

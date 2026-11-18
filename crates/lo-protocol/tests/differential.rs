@@ -80,6 +80,12 @@ fn matches_openorbit() {
                     d.name, d.remaining, case["remaining"]
                 ));
             }
+            if let Some(want) = case.get("fmt").and_then(Json::as_str) {
+                let got = lo_protocol::display::fmt(&d.msg, true, 300);
+                if got != want {
+                    fail(format!("{} fmt\n  rust:   {got}\n  python: {want}", d.name));
+                }
+            }
             if Json::Bool(d.error.is_some()) != case["error"] {
                 fail(format!(
                     "{} error {:?} != python error {}",

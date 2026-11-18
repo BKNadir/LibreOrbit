@@ -10,5 +10,7 @@ rust-version.workspace = true
 
 [dependencies]
 lo-core.workspace = true
+lo-game.workspace = true
+lo-protocol.workspace = true
 lo-web.workspace = true
 tokio.workspace = true

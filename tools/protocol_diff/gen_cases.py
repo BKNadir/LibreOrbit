@@ -114,7 +114,7 @@ def main():
                     case['encode_error'] = type(e).__name__
                 else:
                     mid, name, dec, left, err = P.decode_message(payload)
-                    case.update(payload=payload.hex(), decoded=js(dec), remaining=left, error=err is not None)
+                    case.update(payload=payload.hex(), decoded=js(dec), remaining=left, error=err is not None, fmt=P.fmt(dec, 300))
                     payloads.append(payload)
                 out.write(json.dumps(case, ensure_ascii=False) + '\n')
                 n_enc += 1
@@ -135,7 +135,7 @@ def main():
                 p = bytes(rnd.randrange(256) for _ in range(rnd.randint(0, 6)))
             mid, name, dec, left, err = P.decode_message(p)
             out.write(json.dumps({'kind': 'decode', 'payload': p.hex(), 'id': mid, 'name': name, 'decoded': js(dec),
-                                  'remaining': left, 'error': err is not None}, ensure_ascii=False) + '\n')
+                                  'remaining': left, 'error': err is not None, 'fmt': P.fmt(dec, 300)}, ensure_ascii=False) + '\n')
             n_fuzz += 1
     print('%d encode cases, %d decode cases -> %s' % (n_enc, n_fuzz, a.out))
 

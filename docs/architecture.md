@@ -20,7 +20,7 @@ mode créatif) viennent ensuite, sur une base dont le comportement est déjà v�
 | `protocol.py` | protocole du client | | `lo-protocol` ✅ |
 | `web.py` | connexion web du client (links.php, login.php, maps.php), fichiers CDN | 8090, 80 (+843, 9339, 8082) | `lo-web` ✅ |
 | `paths.py`, `game_data.py`, `platform_compat.py` | emplacements, données avec les patchs du World Editor | | `lo-core` ✅ |
-| `game.py` | sessions, connexion, paquets de bienvenue, routage des requêtes | 8081 | `lo-game` |
+| `game.py` | sessions, connexion, paquets de bienvenue, routage des requêtes | 8081 | `lo-game` (en cours, voir [`portage-jeu.md`](portage-jeu.md)) |
 | `world.py` et une centaine de modules | simulation des cartes, combat, systèmes du jeu | | `lo-game` (un module par système) |
 | `chat.py` | tchat (protocole « AChat » / Infinicast) | 7771 | `lo-chat` |
 | `player_profile.py`, `save_*.py` | sauvegarde du joueur | | `lo-save` |
@@ -38,9 +38,10 @@ crates/
   lo-save/       sauvegardes (même format que profile.json d'OpenOrbit) à venir
   lo-web/        connexion web du client (8090, 80)                    ✅
   lo-chat/       tchat (7771)                                          à venir
-  lo-game/       sessions, cartes, systèmes du jeu (8081)              à venir
+  lo-game/       sessions, cartes, systèmes du jeu (8081)              en cours
+  lo-probe/      client de test scripté (outil de développement)        ✅
   lo-panel/      panneau : API HTTP + service d'une interface          à venir
-  libreorbit/    l'exécutable qui assemble le tout (service `web`)     ✅
+  libreorbit/    l'exécutable qui assemble le tout (`web`, `game`)     ✅
 frontends/
   openorbit/     interface d'OpenOrbit, copiée telle quelle            ✅
   <nouvelle>/    seconde interface, plus tard

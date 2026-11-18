@@ -108,7 +108,7 @@ fn integral(d: f64) -> Value {
     if (-LIMIT..LIMIT).contains(&d) {
         Value::Int(d as i64)
     } else {
-        Value::Float(d)
+        Value::BigInt(d)
     }
 }
 
@@ -469,7 +469,7 @@ fn to_int(v: &Value) -> Result<i64, String> {
     match v {
         Value::Int(i) => Ok(*i),
         Value::Bool(b) => Ok(*b as i64),
-        Value::Float(f) if f.is_finite() => Ok(f.trunc() as i64),
+        Value::Float(f) | Value::BigInt(f) if f.is_finite() => Ok(f.trunc() as i64),
         Value::Str(s) => s
             .trim()
             .parse()
@@ -482,7 +482,7 @@ fn to_int(v: &Value) -> Result<i64, String> {
 fn to_float(v: &Value) -> Result<f64, String> {
     match v {
         Value::Int(i) => Ok(*i as f64),
-        Value::Float(f) => Ok(*f),
+        Value::Float(f) | Value::BigInt(f) => Ok(*f),
         Value::Bool(b) => Ok(*b as i64 as f64),
         Value::Str(s) => s
             .trim()
