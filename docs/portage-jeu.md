@@ -6,6 +6,8 @@
 | --- | --- |
 | Écoute du port 8081, tramage, journal `gs.log` (même format, clé de session masquée) | ✅ identique à `game.py` |
 | `VersionRequest` → `VersionCommand`, `KeepAlive` → `StayinAlive` | ✅ identique |
+| Sauvegarde (`lo-save`) : lecture, nouveau profil, écriture identique à OpenOrbit | ✅ (profils réécrits octet pour octet) |
+| Sauvegarde : compléments des anciens profils (`_migrate`), marqueurs `@…`, `patch_template` | à faire |
 | Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) | à faire (ci-dessous) |
 | Simulation de la carte, combat, systèmes du jeu | à faire |
 

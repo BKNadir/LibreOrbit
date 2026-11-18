@@ -1,0 +1,3541 @@
+{
+ "version": 1,
+ "created": "2026-11-18 07:36:30",
+ "pilot": {
+  "userId": 100000001,
+  "userName": "Zeta",
+  "factionId": 2,
+  "clanId": 0,
+  "clanTag": "",
+  "level": 1,
+  "ep": 0,
+  "honourPoints": 0,
+  "credits": 0,
+  "uridium": 0,
+  "premium": false,
+  "dailyRank": 1,
+  "galaxyGatesDone": 0,
+  "expansionStage": 1,
+  "jackpot": 0.0,
+  "useSystemFont": true,
+  "captainEnergy": 0,
+  "maxCaptainEnergy": 0
+ },
+ "ship": {
+  "typeId": "ship_liberator",
+  "speed": 294,
+  "shield": 0,
+  "shieldMax": 0,
+  "hitPoints": 115750,
+  "hitMax": 116000,
+  "nanoHull": 0,
+  "maxNanoHull": 116000,
+  "cargoSpace": 400,
+  "cargoSpaceMax": 400,
+  "cloaked": false,
+  "modifier": []
+ },
+ "position": {
+  "mapId": 5,
+  "x": 19000,
+  "y": 2000
+ },
+ "ores": [],
+ "formation": 0,
+ "settings": {
+  "displaySettingsModule": {
+   "_": "DisplaySettingsModule",
+   "notSet": true,
+   "displayPlayerName": true,
+   "displayResources": true,
+   "displayBoxes": true,
+   "displayHitpointBubbles": true,
+   "displayChat": true,
+   "displayDrones": true,
+   "displayCargoboxes": true,
+   "displayPenaltyCargoboxes": true,
+   "showNotOwnedItems": false,
+   "displayWindowBackground": true,
+   "displayMinimapBackground": true,
+   "displayNotifications": true,
+   "preloadUserShips": true,
+   "alwaysDraggableWindows": true,
+   "shipHovering": true,
+   "showSecondQuickslotBar": true,
+   "useAutoQuality": true,
+   "displayUse2d": false,
+   "displaySetting3DqualityAntialias": 0,
+   "displaySetting3DqualityBackground": 0,
+   "displaySetting3DqualityEffects": 0,
+   "displaySetting3DqualityLights": 0,
+   "displaySetting3DqualityTextures": 0,
+   "displaySetting3DqualityZones": 0,
+   "displaySetting3DsizeTextures": 0,
+   "displaySetting3DtextureFiltering": 0,
+   "proActionBarEnabled": true,
+   "proActionBarKeyboardInputEnabled": true,
+   "proActionBarAutohideEnabled": true,
+   "displayMyDrones": true,
+   "pixelatedRenderingEnabled": false
+  },
+  "windowSettingsModule": {
+   "_": "WindowSettingsModule",
+   "minmapScale": 9,
+   "barStatus": "",
+   "hideAllWindows": false
+  },
+  "gameplaySettingsModule": {
+   "_": "GameplaySettingsModule",
+   "notSet": true,
+   "autoBoost": true,
+   "autoRefinement": true,
+   "quickslotStopAttack": true,
+   "doubleclickAttack": true,
+   "autoChangeAmmo": true,
+   "autoStart": true,
+   "autoBuyGreenBootyKeys": false,
+   "showBattlerayNotifications": false,
+   "showLowHealthWarning": true
+  },
+  "questSettingsModule": {
+   "_": "QuestSettingsModule",
+   "attemptedFilter": true,
+   "inLevelRangeFilter": true,
+   "completedFilter": false,
+   "availableFilter": true,
+   "unavailableFilter": false,
+   "unattemptedFilter": true
+  },
+  "audioSettingsModule": {
+   "_": "AudioSettingsModule",
+   "notSet": true,
+   "sound": 0,
+   "music": 0,
+   "voice": 0,
+   "playCombatMusic": true
+  },
+  "qualitySettingsModule": {
+   "_": "QualitySettingsModule",
+   "notSet": true,
+   "qualityAttack": 0,
+   "qualityBackground": 0,
+   "qualityPresetting": 0,
+   "qualityCustomized": true,
+   "qualityPOIzone": 0,
+   "qualityShip": 0,
+   "qualityEngine": 0,
+   "qualityExplosion": 0,
+   "qualityCollectables": 0,
+   "qualityEffect": 0
+  }
+ },
+ "key_bindings": [
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 2,
+   "keyCodes": [
+    17
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 17,
+   "keyCodes": [
+    123
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 1,
+   "keyCodes": [
+    67
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 14,
+   "keyCodes": [
+    13
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 0,
+   "keyCodes": [
+    74
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 3,
+   "keyCodes": [
+    32
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 6,
+   "keyCodes": [
+    76
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 10,
+   "keyCodes": [
+    70
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 4,
+   "keyCodes": [
+    69
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 5,
+   "keyCodes": [
+    82
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 13,
+   "keyCodes": [
+    68
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    49
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    50
+   ],
+   "parameter": 1,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    51
+   ],
+   "parameter": 2,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    52
+   ],
+   "parameter": 3,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    53
+   ],
+   "parameter": 4,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    54
+   ],
+   "parameter": 5,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    55
+   ],
+   "parameter": 6,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    56
+   ],
+   "parameter": 7,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    57
+   ],
+   "parameter": 8,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 7,
+   "keyCodes": [
+    48
+   ],
+   "parameter": 9,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 15,
+   "keyCodes": [
+    9
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 9,
+   "keyCodes": [
+    72
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 11,
+   "keyCodes": [
+    187
+   ],
+   "parameter": 0,
+   "charCode": 0
+  },
+  {
+   "_": "UserKeyBindingsModule",
+   "actionType": 12,
+   "keyCodes": [
+    189
+   ],
+   "parameter": 0,
+   "charCode": 0
+  }
+ ],
+ "ui": {
+  "featureBars": [
+   {
+    "_": "UIFeatureBarCommand",
+    "featureBarItems": [
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_cli",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "cli",
+      "windowTitle": "title_cli",
+      "posX": 50,
+      "posY": 50,
+      "height": 200,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 330
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_user",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "user",
+      "windowTitle": "title_user",
+      "posX": 98,
+      "posY": 29,
+      "height": 108,
+      "maximized": true,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_user",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_ship",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "ship",
+      "windowTitle": "title_ship",
+      "posX": 98,
+      "posY": 10,
+      "height": 96,
+      "maximized": true,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_ship",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "ttip_shipWarp_btn",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "ship_warp",
+      "windowTitle": "ship_warp",
+      "posX": 50,
+      "posY": 50,
+      "height": 210,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 300
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_chat",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "chat",
+      "windowTitle": "title_chat",
+      "posX": 0,
+      "posY": 95,
+      "height": 215,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 252
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_group",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "group",
+      "windowTitle": "title_group",
+      "posX": 106,
+      "posY": 35,
+      "height": 200,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_group",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "width": 330
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_map",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "minimap",
+      "windowTitle": "title_map",
+      "posX": 98,
+      "posY": 97,
+      "height": 189,
+      "maximized": true,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_minimap",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "width": 258
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_spacemap",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "spacemap",
+      "windowTitle": "title_spacemap",
+      "posX": 50,
+      "posY": 43,
+      "height": 620,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_spacemap",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "width": 805
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_quests",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "quests",
+      "windowTitle": "title_quests",
+      "posX": 0,
+      "posY": 53,
+      "height": 200,
+      "maximized": true,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 200
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_refinement",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "refinement",
+      "windowTitle": "title_refinement",
+      "posX": 48,
+      "posY": 48,
+      "height": 525,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 455
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_assembly",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "assembly",
+      "windowTitle": "title_assembly",
+      "posX": 48,
+      "posY": 48,
+      "height": 460,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 520
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_log",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "log",
+      "windowTitle": "title_log",
+      "posX": 0,
+      "posY": 17,
+      "height": 150,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_log",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "width": 240
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_pet",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "pet",
+      "windowTitle": "title_pet",
+      "posX": 0,
+      "posY": 63,
+      "height": 130,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_pet",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "width": 260
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_contacts",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "contacts",
+      "windowTitle": "title_contacts",
+      "posX": 98,
+      "posY": 50,
+      "height": 400,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 320
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_booster",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "booster",
+      "windowTitle": "title_booster",
+      "posX": 50,
+      "posY": 50,
+      "height": 200,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 190
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_dispatch",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "dispatch",
+      "windowTitle": "title_dispatch",
+      "posX": 50,
+      "posY": 50,
+      "height": 424,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 785
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_gg_builder",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "ggBuilder",
+      "windowTitle": "title_gg_builder",
+      "posX": 50,
+      "posY": 50,
+      "height": 435,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_gg_builder",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "width": 807
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "label_trinitytrials",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "trinityTrials",
+      "windowTitle": "label_trinitytrials",
+      "posX": 50,
+      "posY": 50,
+      "height": 460,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 728
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "window_dse_title",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "expedition"
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "label_strikeandexit",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "strikeAndExit",
+      "windowTitle": "label_strikeandexit",
+      "posX": 50,
+      "posY": 50,
+      "height": 500,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 535
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "label_rankings",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "rankings",
+      "windowTitle": "label_rankings",
+      "posX": 50,
+      "posY": 50,
+      "height": 395,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 670
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_eternal_blacklight",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "eternal_blacklight",
+      "windowTitle": "title_eternal_blacklight",
+      "posX": 50,
+      "posY": 50,
+      "height": 267,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 450
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_spaceball",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "spaceball",
+      "windowTitle": "title_spaceball",
+      "posX": 50,
+      "posY": 50,
+      "height": 70,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 170
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_invasion",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "invasion",
+      "windowTitle": "title_invasion",
+      "posX": 50,
+      "posY": 50,
+      "height": 80,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 170
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_ctb",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "ctb",
+      "windowTitle": "title_ctb",
+      "posX": 50,
+      "posY": 50,
+      "height": 70,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 170
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_tdm",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "tdm",
+      "windowTitle": "title_tdm",
+      "posX": 50,
+      "posY": 50,
+      "height": 160,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 160
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_ranked_hunt",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "ranked_hunt",
+      "windowTitle": "",
+      "posX": 50,
+      "posY": 50,
+      "height": 55,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 200
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_highscoregate",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "highscoregate",
+      "windowTitle": "title_highscoregate",
+      "posX": 50,
+      "posY": 50,
+      "height": 55,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 225
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_scoreevent",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "scoreevent",
+      "windowTitle": "title_scoreevent",
+      "posX": 50,
+      "posY": 50,
+      "height": 100,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 200
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_ifg",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "infiltration",
+      "windowTitle": "title_ifg",
+      "posX": 50,
+      "posY": 50,
+      "height": 55,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 220
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_wordpuzzle",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "word_puzzle",
+      "windowTitle": "title_wordpuzzle",
+      "posX": 50,
+      "posY": 50,
+      "height": 10,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 10
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_sectorcontrol_ingame_status",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "sectorcontrol",
+      "windowTitle": "title_sectorcontrol_ingame_status",
+      "posX": 50,
+      "posY": 50,
+      "height": 100,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 200
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_jackpot_status_ui",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "jackpot_status_ui",
+      "windowTitle": "title_jackpot_status_ui",
+      "posX": 50,
+      "posY": 50,
+      "height": 340,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 430
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_countdownHalloweenNPCs",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "curcubitor",
+      "windowTitle": "title_countdownHalloweenNpcs",
+      "posX": 50,
+      "posY": 50,
+      "height": 10,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 10
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_influence",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "influence",
+      "windowTitle": "title_influence",
+      "posX": 50,
+      "posY": 50,
+      "height": 346,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 262
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_plutus",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "plutus",
+      "windowTitle": "title_plutus",
+      "posX": 50,
+      "posY": 50,
+      "height": 55,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 200
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_chrominEvent",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "chrominEvent",
+      "windowTitle": "title_chrominEvent",
+      "posX": 73,
+      "posY": 5,
+      "height": 95,
+      "maximized": true,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_galacticStrife",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "pvp_summer",
+      "windowTitle": "title_galacticStrife",
+      "posX": 50,
+      "posY": 50,
+      "height": 55,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 200
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_tieredArena",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "tiered_arena",
+      "windowTitle": "title_tieredArena",
+      "posX": 50,
+      "posY": 50,
+      "height": 55,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 200
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_objectives",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "battle_pass",
+      "windowTitle": "title_objectives",
+      "posX": 50,
+      "posY": 50,
+      "height": 467,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 443
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_curcubitor2019",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "curcubitor2019",
+      "windowTitle": "title_curcubitor2019",
+      "posX": 50,
+      "posY": 50,
+      "height": 205,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 450
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_frozen_labyrinth",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "frozen_labyrinth",
+      "windowTitle": "title_frozenLabyrinth",
+      "posX": 50,
+      "posY": 50,
+      "height": 267,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 450
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "curcubitor_title",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "npc_event",
+      "windowTitle": "curcubitor_title",
+      "posX": 50,
+      "posY": 50,
+      "height": 140,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 450
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_mimesis_mutiny",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "payload_escort",
+      "windowTitle": "title_mimesis_mutiny",
+      "posX": 50,
+      "posY": 50,
+      "height": 267,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 450
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_eternal_gate",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "eternal_gate",
+      "windowTitle": "title_eternal_gate",
+      "posX": 50,
+      "posY": 50,
+      "height": 267,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 450
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "agatusbreach_title",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "agatus_event",
+      "windowTitle": "agatusbreach_title",
+      "posX": 50,
+      "posY": 50,
+      "height": 140,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 450
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_astral_ascension",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "rogue_lite"
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_pre-blackfriday-sales",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "preBlackFridaySales",
+      "windowTitle": "title_pre-blackfriday-sales",
+      "posX": 50,
+      "posY": 50,
+      "height": 400,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 360
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_ship_boost_event",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "ship_boost_event",
+      "windowTitle": "title_ship_boost_event",
+      "posX": 50,
+      "posY": 50,
+      "height": 550,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 450
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_traininggrounds",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "traininggrounds",
+      "windowTitle": "title_traininggrounds",
+      "posX": 50,
+      "posY": 50,
+      "height": 340,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 320
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_spaceplague",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "spaceplague",
+      "windowTitle": "title_spaceplague",
+      "posX": 50,
+      "posY": 50,
+      "height": 241,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 266
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_domination",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "domination",
+      "windowTitle": "title_domination",
+      "posX": 50,
+      "posY": 50,
+      "height": 241,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 266
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "httip_rzone",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "rzone",
+      "windowTitle": "title_rzone_ui",
+      "posX": 50,
+      "posY": 50,
+      "height": 346,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 262
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "ttip_event_progress",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "eventProgress",
+      "windowTitle": "title_eventprogress",
+      "posX": 50,
+      "posY": 50,
+      "height": 354,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 448
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_wargame",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "wargame_event",
+      "windowTitle": "title_wargame",
+      "posX": 0,
+      "posY": 50,
+      "height": 190,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 270
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_wargame_lobby",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "wargame_lobby",
+      "windowTitle": "",
+      "posX": 92,
+      "posY": 10,
+      "height": 330,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 272
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_diminishing_quests",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "diminish_quests",
+      "windowTitle": "title_diminishing_quests",
+      "posX": 0,
+      "posY": 10,
+      "height": 200,
+      "maximized": true,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 200
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "event_title_world_boss",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "worldBoss",
+      "windowTitle": "event_title_world_boss",
+      "posX": 50,
+      "posY": 50,
+      "height": 500,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 535
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_titlefrenzy",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "titleFrenzy",
+      "windowTitle": "title_titlefrenzy",
+      "posX": 50,
+      "posY": 50,
+      "height": 390,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 545
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "event_title_world_boss",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "publicWorldBoss",
+      "windowTitle": "event_title_world_boss",
+      "posX": 50,
+      "posY": 50,
+      "height": 500,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 535
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "label_voyagersascentrial",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "voyagers",
+      "windowTitle": "label_voyagersascentrial",
+      "posX": 50,
+      "posY": 50,
+      "height": 460,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 728
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_space_search",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "space_search",
+      "windowTitle": "title_space_search",
+      "posX": 50,
+      "posY": 50,
+      "height": 924,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 1504
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_bday2025",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "birthday_2025",
+      "windowTitle": "title_bday2025",
+      "posX": 447,
+      "posY": -19,
+      "height": 420,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 840
+     }
+    ],
+    "featureBarOrder": "0",
+    "featureBarPosition": "-0.073,-0.115",
+    "featureBarType": 1
+   },
+   {
+    "_": "UIFeatureBarCommand",
+    "featureBarItems": [
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "btn_hangar",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "hangar",
+      "windowTitle": "btn_hangar",
+      "posX": 19,
+      "posY": -19,
+      "height": 38,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "btn_hangarcannons",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "hangarCannons",
+      "windowTitle": "btn_hangarcannons",
+      "posX": 19,
+      "posY": -19,
+      "height": 335,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 660
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "targeted_hintwindow_button_skilltree_open_pilotsheet",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "pilotSheet",
+      "windowTitle": "targeted_hintwindow_button_skilltree_open_pilotsheet",
+      "posX": 58,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "label_skylab",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "skylab",
+      "windowTitle": "label_skylab",
+      "posX": 97,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "ttip_clanplaceholder",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "clan",
+      "windowTitle": "ttip_clanplaceholder",
+      "posX": 136,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "targeted_hintwindow_title_auction_house",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "auction",
+      "windowTitle": "targeted_hintwindow_title_auction_house",
+      "posX": 145,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "ttip_captain",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "nova",
+      "windowTitle": "ttip_captain",
+      "posX": 214,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "menu_item_vouchers",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "vouchers",
+      "windowTitle": "menu_item_vouchers",
+      "posX": 252,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "menu_item_message",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "message",
+      "windowTitle": "menu_item_message",
+      "posX": 291,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_shop",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "new_shop",
+      "windowTitle": "title_shop",
+      "posX": 330,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_logbook",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "logbook",
+      "windowTitle": "title_logbook",
+      "posX": 369,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_armoryUnlock",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "armoryUnlock",
+      "windowTitle": "title_armoryUnlock",
+      "posX": 369,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "nse_event-name",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "unity_client_reward",
+      "windowTitle": "nse_event-name",
+      "posX": 50,
+      "posY": 50,
+      "height": 440,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 800
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "window_a_new_hope_gameplay_title",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "a_new_hope",
+      "windowTitle": "window_a_new_hope_gameplay_title",
+      "posX": 408,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_returnofhero",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "return_of_hero",
+      "windowTitle": "title_returnofhero",
+      "posX": 447,
+      "posY": -19,
+      "height": 108,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 212
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "return_pass_name",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "recallBattlePass",
+      "windowTitle": "return_pass_name",
+      "posX": 447,
+      "posY": -19,
+      "height": 440,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 800
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_kristallon_apotheosis",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "apotheosis",
+      "windowTitle": "title_kristallon_apotheosis",
+      "posX": 447,
+      "posY": -19,
+      "height": 460,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 728
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_synthesis",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "synthesis"
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_update_engine",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "update_engine"
+     }
+    ],
+    "featureBarOrder": "0",
+    "featureBarPosition": "-0.073,-0.115",
+    "featureBarType": 3
+   },
+   {
+    "_": "UIFeatureBarCommand",
+    "featureBarItems": [
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_mileage-market",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "mileageMarket",
+      "windowTitle": "title_mileage-market",
+      "posX": 50,
+      "posY": 50,
+      "height": 610,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 550
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_returnee_login_campaign",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "returnee_login",
+      "windowTitle": "title_returnee_login_campaign",
+      "posX": 55,
+      "posY": 15,
+      "height": 470,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 580
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "window_vip-exchange",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": false,
+      "itemId": "vipMerchantExchange",
+      "windowTitle": "window_vip-exchange",
+      "posX": 50,
+      "posY": 50,
+      "height": 650,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 550
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_monthlydeluxe_reward",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "monthly_deluxe",
+      "windowTitle": "",
+      "posX": 73,
+      "posY": 5,
+      "height": 600,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 580
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_miniclientbonus_reward",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "miniclient_reward",
+      "windowTitle": "title_miniclientbonus_reward",
+      "posX": 73,
+      "posY": 5,
+      "height": 360,
+      "maximized": true,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 580
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_uridium_bank",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "uridium_bank",
+      "windowTitle": "title_uridium_bank",
+      "posX": 73,
+      "posY": 5,
+      "height": 205,
+      "maximized": true,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 220
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "window_main_sp_highlight_title-seasonpassmar2023",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "seasonPass",
+      "windowTitle": "window_main_sp_highlight_title-seasonpassmar2023",
+      "posX": 50,
+      "posY": 50,
+      "height": 440,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 800
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_command_center",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "command_center"
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_shop",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "shop"
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_assistant",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "assistant"
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_settings",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "settings"
+     },
+     {
+      "_": "WindowItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_help",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "help",
+      "windowTitle": "title_help",
+      "posX": 50,
+      "posY": 50,
+      "height": 121,
+      "maximized": false,
+      "helpText": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": []
+      },
+      "width": 219
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "title_logout",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "logout"
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "ttip_fullscreen_btn",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "fullscreen"
+     },
+     {
+      "_": "ItemCommand",
+      "toolTip": {
+       "_": "MessageKeyListWildcardCommand",
+       "commandList": [
+        {
+         "_": "MessageKeyListWildcardModule",
+         "wildCardReplacements": [],
+         "baseKey": "event_Stellar_title",
+         "baseKeyType": {
+          "_": "ReplacementTypeModule",
+          "typeValue": 5
+         },
+         "textStyle": 0
+        }
+       ]
+      },
+      "visible": true,
+      "itemId": "stellar_pathfinder"
+     }
+    ],
+    "featureBarOrder": "0",
+    "featureBarPosition": "99.89,-0.115",
+    "featureBarType": 2
+   },
+   {
+    "_": "UIFeatureBarCommand",
+    "featureBarItems": [],
+    "featureBarOrder": "",
+    "featureBarPosition": "",
+    "featureBarType": 0
+   }
+  ]
+ },
+ "equipment": {
+  "laser": [
+   "equipment_weapon_laser_lf-1"
+  ],
+  "generators": [
+   "equipment_generator_speed_g3n-7900",
+   "equipment_generator_speed_g3n-7900"
+  ],
+  "extra": [
+   "equipment_extra_cpu_jp-01",
+   "equipment_extra_repbot_rep-2"
+  ],
+  "rocket": [],
+  "upgrades": []
+ },
+ "ammunition": {
+  "ammunition_laser_lcb-10": 5000,
+  "ammunition_laser_mcb-25": 0,
+  "ammunition_laser_mcb-50": 0,
+  "ammunition_laser_ucb-100": 0,
+  "ammunition_laser_sab-50": 0,
+  "ammunition_laser_cbo-100": 0,
+  "ammunition_laser_rsb-75": 0,
+  "ammunition_laser_job-100": 0,
+  "ammunition_laser_rb-214": 0,
+  "ammunition_laser_pib-100": 0,
+  "ammunition_laser_spacecup_group-a": 0,
+  "ammunition_laser_spacecup_group-b": 0,
+  "ammunition_laser_spacecup_group-c": 0,
+  "ammunition_laser_spacecup_group-d": 0,
+  "ammunition_laser_spacecup_group-e": 0,
+  "ammunition_laser_spacecup_group-f": 0,
+  "ammunition_laser_spacecup_group-g": 0,
+  "ammunition_laser_spacecup_group-h": 0,
+  "ammunition_laser_a-bl": 0,
+  "ammunition_laser_rcb-140": 0,
+  "ammunition_laser_idb-125": 0,
+  "ammunition_laser_vb-142": 0,
+  "ammunition_laser_emaa-20": 0,
+  "ammunition_laser_sbl-100": 0,
+  "ammunition_rocket_r-310": 20,
+  "ammunition_rocket_plt-2026": 0,
+  "ammunition_rocket_plt-2021": 0,
+  "ammunition_rocket_plt-3030": 0,
+  "ammunition_specialammo_pld-8": 0,
+  "ammunition_specialammo_dcr-250": 0,
+  "ammunition_specialammo_wiz-x": 0,
+  "ammunition_rocket_bdr-1211": 0,
+  "ammunition_specialammo_r-ic3": 0,
+  "ammunition_specialammo_sr-5": 0,
+  "ammunition_specialammo_k-300m": 0,
+  "ammunition_specialammo_sp-100x": 0,
+  "ammunition_rocket_agt-500": 0,
+  "ammunition_specialammo_rc-100": 0,
+  "ammunition_rocketlauncher_hstrm-01": 0,
+  "ammunition_rocketlauncher_ubr-100": 0,
+  "ammunition_rocketlauncher_eco-10": 0,
+  "ammunition_rocketlauncher_sar-01": 0,
+  "ammunition_rocketlauncher_sar-02": 0,
+  "ammunition_rocketlauncher_cbr": 0,
+  "ammunition_rocketlauncher_bdr1212": 0,
+  "ammunition_rocketlauncher_pir-100": 0,
+  "ammunition_rocketlauncher_obr-100": 0,
+  "ammunition_slug_ths-d01": 0,
+  "ammunition_slug_ths-c02": 0,
+  "ammunition_slug_ths-b03": 0,
+  "ammunition_slug_ths-a04": 0,
+  "ammunition_slug_cos-d01": 0,
+  "ammunition_slug_cos-c02": 0,
+  "ammunition_slug_cos-b03": 0,
+  "ammunition_slug_cos-a04": 0,
+  "ammunition_slug_els-d01": 0,
+  "ammunition_slug_els-c02": 0,
+  "ammunition_slug_els-b03": 0,
+  "ammunition_slug_els-a04": 0,
+  "ammunition_spool_gsp-30": 0,
+  "ammunition_spool_gsp-75": 0,
+  "ammunition_spool_gsp-150": 0,
+  "ammunition_spool_gsp-300": 0,
+  "ammunition_mine_smb-01": 0,
+  "ammunition_specialammo_emp-01": 0,
+  "ammunition_firework_fwx-s": 0,
+  "ammunition_firework_fwx-m": 0,
+  "ammunition_firework_fwx-l": 0,
+  "ammunition_firework_fwx-com": 0,
+  "ammunition_firework_fwx-rz": 0,
+  "ammunition_firework_ignite": 0,
+  "ammunition_specialammo_emote_alien-angry": 0,
+  "ammunition_specialammo_emote_alien-cry": 0,
+  "ammunition_specialammo_emote_alien-horror": 0,
+  "ammunition_specialammo_emote_alien-smile": 0,
+  "ammunition_specialammo_emote_alien-wink": 0,
+  "ammunition_specialammo_emote_bunny-confused": 0,
+  "ammunition_specialammo_emote_bunny-cool": 0,
+  "ammunition_specialammo_emote_bunny-sad": 0,
+  "ammunition_specialammo_emote_bunny-sleepy": 0,
+  "ammunition_specialammo_emote_bunny-stare": 0,
+  "ammunition_specialammo_emote_alien-laughcry": 0,
+  "ammunition_specialammo_emote_alien-cool": 0,
+  "ammunition_specialammo_emote_alien-sorry": 0,
+  "ammunition_specialammo_emote_alien-mask-up": 0,
+  "ammunition_specialammo_emote_alien-sick": 0,
+  "ammunition_specialammo_emote_injection": 0,
+  "ammunition_specialammo_emote_alien-dizzy": 0,
+  "ammunition_specialammo_emote_alien-sleepy": 0,
+  "ammunition_specialammo_emote_alien-starryeyes": 0,
+  "ammunition_specialammo_spray_cross": 0,
+  "ammunition_specialammo_spray_hearts": 0,
+  "ammunition_specialammo_spray_ko": 0,
+  "ammunition_specialammo_spray_like": 0,
+  "ammunition_specialammo_spray_skull": 0,
+  "ammunition_specialammo_spray_eggle": 0,
+  "ammunition_specialammo_spray_space-bunny": 0,
+  "ammunition_specialammo_spray_eggtopia": 0,
+  "ammunition_specialammo_spray_easter-eggs": 0,
+  "ammunition_specialammo_spray_biohazard": 0,
+  "ammunition_specialammo_spray_healing": 0,
+  "ammunition_specialammo_spray_wash-hands": 0,
+  "ammunition_specialammo_spray_shoot": 0,
+  "ammunition_specialammo_spray_watchingyou": 0,
+  "ammunition_specialammo_spray_heartbreak": 0,
+  "ammunition_specialammo_spray_strong": 0,
+  "ammunition_specialammo_spray_celebrate": 0,
+  "ammunition_specialammo_spray_peace": 0,
+  "ammunition_specialammo_spray_question": 0,
+  "ammunition_specialammo_emote_alien-cheers": 0,
+  "ammunition_specialammo_emote_alien-party": 0,
+  "ammunition_specialammo_emote_alien-flyingkiss": 0,
+  "ammunition_specialammo_emote_alien-smirk": 0,
+  "ammunition_specialammo_emote_alien-roger": 0,
+  "ammunition_specialammo_spray_crown": 0,
+  "ammunition_specialammo_spray_fist-bump": 0,
+  "ammunition_specialammo_spray_hand-shake": 0,
+  "ammunition_specialammo_emote_pumpkin-smile": 0,
+  "ammunition_specialammo_emote_pumpkin-alien": 0,
+  "ammunition_specialammo_spray_batman": 0,
+  "ammunition_specialammo_spray_hand": 0,
+  "ammunition_specialammo_spray_turkeydinner": 0,
+  "ammunition_specialammo_emote_eat-turkey": 0,
+  "ammunition_specialammo_emote_snowman-brr": 0,
+  "ammunition_specialammo_emote_snowman-rolleyes": 0,
+  "ammunition_specialammo_emote_snowman-thinking": 0,
+  "ammunition_specialammo_spray_frozen-hand": 0,
+  "ammunition_specialammo_spray_snowflake": 0,
+  "ammunition_specialammo_spray_yeti": 0,
+  "ammunition_specialammo_emote_like-turkey": 0,
+  "ammunition_mine_acm-01": 0,
+  "ammunition_mine_empm-01": 0,
+  "ammunition_mine_sabm-01": 0,
+  "ammunition_mine_ddm-01": 0,
+  "ammunition_mine_slm-01": 0,
+  "ammunition_mine_im-01": 0,
+  "ammunition_mine_agl-m01": 0,
+  "ammunition_specialammo_ghostifier": 0,
+  "ammunition_specialammo_frozen-portal": 0,
+  "ammunition_specialammo_cubi-portal": 0,
+  "ammunition_ggportal_permafrost-fissure-cpu": 0,
+  "ammunition_ggportal_quarantine-zone-cpu": 0,
+  "ammunition_ggportal_eternal-blacklight-cpu": 0,
+  "ammunition_specialammo_alien-cpu-cubikon": 0,
+  "ammunition_specialammo_alien-cpu-common": 0,
+  "ammunition_specialammo_alien-cpu-rare": 0,
+  "ammunition_specialammo_alien-cpu-legend": 0,
+  "ammunition_specialammo_ss-cpu": 0,
+  "ammunition_ggportal_astral-cpu": 0,
+  "ammunition_specialammo_bountiful-alien-cpu-normal": 0,
+  "ammunition_specialammo_bountiful-alien-cpu-easy": 0
+ },
+ "ammo_seeded": true,
+ "selected": {
+  "laser": "ammunition_laser_lcb-10",
+  "rocket": "ammunition_rocket_r-310"
+ },
+ "item_id": {
+  "ammunition_laser_lcb-10": 98780933,
+  "ammunition_rocket_r-310": 98780934,
+  "currency_credits": -1908845164,
+  "currency_uridium": -707736347,
+  "ammunition_laser_mcb-25": 98781150,
+  "ammunition_rocketlauncher_eco-10": 98781162,
+  "ammunition_laser_mcb-50": 98781164
+ },
+ "items": {
+  "98780928": "equipment_weapon_laser_lf-1",
+  "98780931": "equipment_generator_speed_g3n-7900",
+  "98780932": "equipment_generator_speed_g3n-7900",
+  "98780930": "equipment_extra_cpu_jp-01",
+  "98780929": "equipment_extra_repbot_rep-2"
+ },
+ "next_id": 99000001,
+ "ships": {
+  "3710086": {
+   "lootId": "ship_liberator",
+   "hangarId": 615176,
+   "configs": {
+    "1": {
+     "laser": [
+      98780928
+     ],
+     "generators": [
+      98780931,
+      98780932
+     ],
+     "extra": [
+      98780930,
+      98780929
+     ],
+     "rocket": []
+    },
+    "2": {
+     "laser": [
+      98780928
+     ],
+     "generators": [
+      98780931,
+      98780932
+     ],
+     "extra": [
+      98780930,
+      98780929
+     ],
+     "rocket": []
+    }
+   },
+   "active_config": 1,
+   "favorite": false,
+   "drone_config": {
+    "1": {},
+    "2": {}
+   }
+  }
+ },
+ "active_ship": "3710086",
+ "drones": [],
+ "formations": [],
+ "next_drone": 1,
+ "upgrades": {},
+ "quests": {
+  "active": {
+   "20000": {}
+  },
+  "done": []
+ },
+ "drone_equipment": [],
+ "equipment_level": {
+  "laser": [
+   0
+  ],
+  "generators": [
+   0,
+   0
+  ],
+  "extra": [
+   0,
+   0
+  ],
+  "rocket": []
+ },
+ "drone_equipment_level": []
+}

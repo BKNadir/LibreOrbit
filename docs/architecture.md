@@ -35,7 +35,7 @@ Le tout sera livré comme un seul exécutable (`libreorbit`), avec des sous-comm
 crates/
   lo-core/       emplacements, données + mondes, JSON façon Python, logs ✅
   lo-protocol/   protocole du client                                   ✅
-  lo-save/       sauvegardes (même format que profile.json d'OpenOrbit) à venir
+  lo-save/       sauvegardes (même format que profile.json d'OpenOrbit) en cours
   lo-web/        connexion web du client (8090, 80)                    ✅
   lo-chat/       tchat (7771)                                          à venir
   lo-game/       sessions, cartes, systèmes du jeu (8081)              en cours
@@ -94,7 +94,8 @@ Pour garder l'interface identique dès le début, deux étapes :
   et `web_settings.json`, dans le monde standard et avec un monde du World Editor : aucune différence.
 * Écart volontaire : une réponse 204 (préflight CORS) n'a pas d'en-tête `Content-Length`, comme l'exige HTTP ;
   `web.py` envoie `Content-Length: 0`. Les navigateurs acceptent les deux.
-* Pas repris : la migration des sauvegardes de l'ancien format v1 (`save_migration.py`), faite par le panneau.
+* Pas repris : la migration des sauvegardes des anciens formats v1/v2 (`save_migration.py`), faite par le panneau
+  d'OpenOrbit ; LibreOrbit refuse ces sauvegardes avec un message clair.
 
 ## Protocole (`lo-protocol`)
 

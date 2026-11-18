@@ -14,6 +14,7 @@ rust-version = "1.85"
 lo-core = { path = "crates/lo-core" }
 lo-game = { path = "crates/lo-game" }
 lo-protocol = { path = "crates/lo-protocol" }
+lo-save = { path = "crates/lo-save" }
 lo-web = { path = "crates/lo-web" }
 bytes = "1"
 chrono = "0.4"

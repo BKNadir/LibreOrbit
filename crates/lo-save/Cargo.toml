@@ -1,0 +1,14 @@
+[package]
+name = "lo-save"
+description = "LibreOrbit saves: the player profile in OpenOrbit's profile.json format"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+lo-core.workspace = true
+chrono.workspace = true
+serde_json.workspace = true

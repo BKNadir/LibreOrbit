@@ -465,6 +465,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "lo-save"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "lo-core",
+ "serde_json",
+]
+
+[[package]]
 name = "lo-web"
 version = "0.1.0"
 dependencies = [
