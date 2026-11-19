@@ -15,6 +15,7 @@ pub mod login_calendar;
 pub mod login_markers;
 pub mod map_layout;
 pub mod map_links;
+pub mod quest;
 pub mod ranks;
 pub mod ship_ability;
 pub mod technology;
@@ -113,6 +114,7 @@ pub struct Game {
     pub markers: login_markers::LoginMarkers,
     pub cal: event_calendar::EventCalendar,
     pub ranks: ranks::Ranks,
+    pub quests: quest::QuestData,
     /// The player's profile (the server's own player).
     pub profile: Mutex<Profile>,
 }
@@ -142,6 +144,7 @@ impl Game {
         let items = items::ItemData::load(&data)?;
         let markers = login_markers::LoginMarkers::load(&data)?;
         let ranks = ranks::Ranks::load(&data)?;
+        let quests = quest::QuestData::load(&data)?;
         let mut cal = event_calendar::EventCalendar::load(&data, settings.clone())?;
         cal.configure(args);
         let profile_path = cfg
@@ -162,6 +165,7 @@ impl Game {
             markers,
             cal,
             ranks,
+            quests,
             profile: Mutex::new(profile),
         })
     }
@@ -174,6 +178,7 @@ impl Game {
             markers: &self.markers,
             cal: &self.cal,
             settings: &self.settings,
+            quests: &self.quests,
             seed,
             now,
             no_popups: self.cfg.no_popups,
@@ -215,6 +220,7 @@ struct Session {
     addr: SocketAddr,
     secrets: Vec<String>,
     menu: templates::MenuState,
+    quest: quest::Quests,
     /// The login bundle was sent; the ready bundle answers the next `ReadyRequest`.
     map_pending: bool,
     ready_n: u32,
@@ -229,6 +235,7 @@ impl Session {
             addr,
             secrets: Vec::new(),
             menu: templates::MenuState::default(),
+            quest: quest::Quests::default(),
             map_pending: false,
             ready_n: 0,
         }
@@ -320,7 +327,7 @@ impl Session {
                         .unwrap_or(Value::Null);
                     let w = game.world(&seed, lo_core::pytime::now());
                     let msgs = bundles::login_batch(&w, &mut p, &mut self.menu, "entry", true);
-                    bundles::with_systems(&w, &mut p, msgs)
+                    bundles::with_systems(&w, &mut p, &mut self.quest, msgs)
                 };
                 self.send_bundle(msgs, "login bundle").await?;
                 self.map_pending = true;

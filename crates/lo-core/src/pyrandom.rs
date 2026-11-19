@@ -79,6 +79,23 @@ impl Random {
         Self::from_seed_u128(u128::from(seed.unsigned_abs()))
     }
 
+    /// `random.Random(s)` for a string (seed version 2: the UTF-8 bytes followed by their SHA-512, read as a big-endian
+    /// integer).
+    pub fn from_str_seed(s: &str) -> Random {
+        use sha2::{Digest, Sha512};
+        let mut bytes = s.as_bytes().to_vec();
+        bytes.extend_from_slice(&Sha512::digest(s.as_bytes()));
+        // 32-bit words, least significant first, without the leading zero words of the integer
+        let mut key: Vec<u32> = bytes
+            .rchunks(4)
+            .map(|c| c.iter().fold(0u32, |a, &b| (a << 8) | u32::from(b)))
+            .collect();
+        while key.len() > 1 && key.last() == Some(&0) {
+            key.pop();
+        }
+        Self::init_by_array(&key)
+    }
+
     fn from_seed_u128(mut n: u128) -> Random {
         let mut key = Vec::new();
         while n > 0 {
@@ -177,6 +194,17 @@ impl Random {
 #[cfg(test)]
 mod tests {
     use super::Random;
+
+    #[test]
+    fn string_seeds() {
+        // r = random.Random('2026-11-19:3'); [r.random() for _ in range(2)]; random.Random('2026-11-19:10').choice(range(17))
+        let mut r = Random::from_str_seed("2026-11-19:3");
+        assert_eq!(r.random(), 0.4436923381830429);
+        assert_eq!(r.random(), 0.6306404996600221);
+        let v: Vec<i32> = (0..17).collect();
+        assert_eq!(*Random::from_str_seed("2026-11-19:10").choice(&v), 6);
+        assert_eq!(Random::from_str_seed("").random(), 0.9602256525641875);
+    }
 
     #[test]
     fn same_as_cpython() {

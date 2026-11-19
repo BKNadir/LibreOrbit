@@ -11,6 +11,7 @@ use lo_game::login_calendar;
 use lo_game::login_markers::LoginMarkers;
 use lo_game::login_markers::Player;
 use lo_game::map_links::MapLinks;
+use lo_game::quest::{QuestCtx, QuestData, Quests};
 use lo_game::ranks::Ranks;
 use lo_game::technology::Timer;
 use lo_game::templates::{Ctx, MenuState, menu_status, patch_template};
@@ -42,6 +43,7 @@ fn main() {
     let markers = LoginMarkers::load(&data).expect("markers");
     let tpl = data.raw("defaults/login.json").expect("login.json");
     let ranks = Ranks::load(&data).expect("ranks");
+    let quests = QuestData::load(&data).expect("quests");
     let mut out = Vec::new();
     for (c, doc) in cases
         .as_array()
@@ -97,6 +99,25 @@ fn main() {
             login_calendar::today_index(&mut p, now),
             login_calendar::next_month_seconds(now),
         ]);
+        let qc = QuestCtx {
+            data: &quests,
+            links: &maps,
+            cal: &cal,
+            settings: &settings,
+            now,
+        };
+        let mut qs = Quests::default();
+        if let Some(g) = c.get("giver").and_then(Value::as_array) {
+            qs.giver = Some((g[0].clone(), g[1].clone(), g[2].clone()));
+        }
+        if let Some(t) = c.get("trade").and_then(Value::as_array) {
+            qs.trade = Some((t[0].clone(), t[1].clone()));
+        }
+        let quest: Vec<Value> = qs
+            .login_msgs(&qc, &p)
+            .into_iter()
+            .map(|(n, f)| json!([n, f]))
+            .collect();
         let mut msgs = Vec::new();
         for kind in ["entry", "ready"] {
             for m in tpl[kind].as_array().unwrap() {
@@ -164,14 +185,14 @@ fn main() {
                 let t = timer(Some(ship_ability::timer_fields(&items, &mut p, s, now)));
                 let d = ship_ability::ship_items(&items, &p)
                     .contains(s)
-                    .then(|| ship_ability::duration(&items, &p, s));
+                    .then(|| ship_ability::duration_value(&items, &p, s));
                 json!([t, d])
             })
             .collect();
         let mut sent_sorted: Vec<(&String, &Value)> = sent.iter().collect();
         sent_sorted.sort_by(|a, b| a.0.cmp(b.0));
         out.push(json!({
-            "rank": rank, "daily": daily, "msgs": msgs, "cache": cache,
+            "rank": rank, "daily": daily, "quest": quest, "msgs": msgs, "cache": cache,
             "sent": Value::Object(sent_sorted.into_iter().map(|(k, v)| (k.clone(), v.clone())).collect()),
             "cpu": state.cpu_init_sent, "booster": b, "uses": uses, "cit": cit, "tech": tech, "sa": sa,
             "doc": p.d, "dirty": p.is_dirty()

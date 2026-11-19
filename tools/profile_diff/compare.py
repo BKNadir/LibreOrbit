@@ -52,11 +52,50 @@ def leaves(x):
     return 1
 
 
+def quest_conditions(case):
+    for el in case['modifier']:
+        if el['condition']['id']:
+            yield el['condition']
+        if el['questCase']['id'] or el['questCase']['modifier']:
+            yield from quest_conditions(el['questCase'])
+
+
+def quest_state(rnd, quests, now, d):
+    """A random quest record: active quests with condition values and start times, finished quests, periods."""
+    qids = sorted(quests)
+    today = datetime.date.fromtimestamp(now)
+    early = datetime.date.fromtimestamp(now - 6.5 * 3600)
+    active = {}
+    marked = [q for q in qids if any(c['type'] in (52, 62) for c in quest_conditions(quests[q]['root']))]   # minimap marks
+    for q in rnd.sample(qids, rnd.choice([0, 1, 2, 4, 8])) + rnd.sample(marked, rnd.choice([0, 2, 6])):
+        vals = {}
+        for c in quest_conditions(quests[q]['root']):
+            if rnd.random() < 0.6:
+                t = c['targetValue']
+                vals[str(c['id'])] = rnd.choice([0, t, t + 5, rnd.randint(0, max(1, t)), rnd.randint(0, max(1, t)) + 0.5])
+        if rnd.random() < 0.4:
+            vals['_bas'] = now - rnd.choice([rnd.uniform(0, 4000), rnd.uniform(0, 400000)])
+        active[str(q)] = vals
+    if rnd.random() < 0.1:
+        active['999999'] = {}
+    pooled = [q for q in qids if quests[q].get('pool') or quests[q].get('repeat')]
+    keys = [today.isoformat(), early.isoformat(), (today - datetime.timedelta(days=1)).isoformat(), 'force',
+            '%d-W%02d' % today.isocalendar()[:2], '%d-W%02d' % early.isocalendar()[:2], str(int(now - 86400))]
+    st = d.setdefault('quests', {'active': {}, 'done': []})
+    st['active'] = active
+    st['done'] = rnd.sample(qids, rnd.choice([0, 5, 60, 300]))
+    st['period'] = {str(q): rnd.choice(keys) for q in rnd.sample(pooled, rnd.choice([0, 10, 80]))}
+    if rnd.random() < 0.3:
+        d['campaign'] = now - rnd.uniform(0, 60 * 86400)
+
+
 def make_cases(oo, n, seed, tmp):
     E = json.load(open(os.path.join(oo, 'server', 'data', 'items.json'), encoding='utf8'))
     SA = json.load(open(os.path.join(oo, 'server', 'data', 'ship_abilities.json'), encoding='utf8'))
     base = json.load(open(BASE, encoding='utf8'))
     rnd = random.Random(seed)
+    quests = {int(k): v for f in ('quests.json', 'quest_extras.json')
+              for k, v in json.load(open(os.path.join(oo, 'server', 'data', f), encoding='utf8'))['quests'].items()}
     extras = sorted(E['extras']) + list(E['repair_robots'])
     launchers = sorted(E['combat_items']['launcher']['kinds'])
     mines = sorted(E['combat_items']['mines'])
@@ -74,7 +113,8 @@ def make_cases(oo, n, seed, tmp):
                            'ammunition_specialammo_bountiful-alien-cpu-normal'] + [r for r in rockets if E['rockets'][r].get('special')] + \
                   ['ammunition_laser_lcb-10', 'nope']
     settings_files = []
-    for i, s in enumerate([{'booster_power': 2.0}, {'booster_power': 0.5, 'no_level_limit': True}, {'events': {'agatus': 'on', 'chromin': 'on'}}]):
+    for i, s in enumerate([{'booster_power': 2.0}, {'booster_power': 0.5, 'no_level_limit': True}, {'events': {'agatus': 'on', 'chromin': 'on'}},
+                              {'max_quests': 3, 'campaign': True}]):
         p = os.path.join(tmp, 'settings%d.json' % i)
         json.dump(s, open(p, 'w'))
         settings_files.append(p)
@@ -176,9 +216,11 @@ def make_cases(oo, n, seed, tmp):
                                        {'ay': ym, 'day': 25, 'last': ''}])
         if d['daily_login'] is None:
             del d['daily_login']
+        quest_state(rnd, quests, now, d)
         cases.append({'doc': d, 'now': now, 'force_rank': rnd.random() < 0.2, 'settings_path': rnd.choice([None, None] + settings_files),
                       'hooks': rnd.choice([{}, {'plutus': True, 'tdm': False, 'returnee_login': True}]),
                       'daily': rnd.choice([None, {'day': 3, 'claimed': True}]),
+                      'giver': rnd.choice([None, [150000123, 1200, 3400]]), 'trade': rnd.choice([None, [5600, 7800]]),
                       'removed': rnd.sample(boosters, rnd.randint(0, 2)),
                       'loots': rnd.sample(extras, 8), 'timer_loots': timer_loots, 'techs': techs,
                       'abilities': rnd.sample(abilities, 15)})

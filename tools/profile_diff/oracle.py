@@ -28,6 +28,7 @@ import ship_ability as SA  # noqa: E402
 import combat_items as CIT  # noqa: E402
 import ranks as RT  # noqa: E402
 import login_calendar as LC  # noqa: E402
+import quest as QM  # noqa: E402
 
 
 class _Now(datetime.datetime):
@@ -56,13 +57,17 @@ for c in cases:
     dl = LC.DailyLogin(p, None)
     dl.today = lambda: datetime.date.fromtimestamp(NOW[0])
     daily = [dl.fields(), dl.claimed_today(), dl.today_index(), dl.next_month_seconds()]
+    qs = QM.Quests(p, log=lambda *a: None)
+    qs.giver = tuple(c['giver']) if c.get('giver') else None
+    qs.trade = tuple(c['trade']) if c.get('trade') else None
+    quest = qs.login_msgs()
     msgs = []
     for kind in ('entry', 'ready'):
         for m in tpl[kind]:
             if m['_m'].startswith('@'):
                 continue
             msgs.append(p.patch_template(m['_m'], m))
-    a = {'rank': rank, 'daily': daily, 'msgs': msgs,
+    a = {'rank': rank, 'daily': daily, 'quest': quest, 'msgs': msgs,
          'cache': {k: p.menu_status(k) for k in sorted(p.menu_status_cache)},
          'sent': p.menu_sent, 'cpu': p.cpu_init_sent,
          'booster': BOOSTER.update_cmd(p, removed=c.get('removed', []))[1],

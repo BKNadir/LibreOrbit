@@ -64,16 +64,23 @@ fn special<'a>(items: &'a ItemData, p: &Profile, item: &str) -> Option<&'a Value
 
 /// The ability's duration in seconds, with the ship's own value (`duration`).
 pub fn duration(items: &ItemData, p: &Profile, item: &str) -> f64 {
+    num(&duration_value(items, p, item)).unwrap_or(0.0)
+}
+
+/// [`duration`] with Python's number type (the ship's own value is kept as written: `0` stays an integer).
+pub fn duration_value(items: &ItemData, p: &Profile, item: &str) -> Value {
     if let Some(d) = special(items, p, item)
         .and_then(|o| o.get("duration_sec"))
-        .and_then(num)
+        .filter(|d| num(d).is_some())
     {
-        return d;
+        return d.clone();
     }
-    abilities(items)[item]["duration_sec"]
-        .as_f64()
-        .unwrap_or(0.0)
-        * factor(items, p, item, "duration")
+    json!(
+        abilities(items)[item]["duration_sec"]
+            .as_f64()
+            .unwrap_or(0.0)
+            * factor(items, p, item, "duration")
+    )
 }
 
 fn state(p: &mut Profile) -> &mut Map<String, Value> {

@@ -11,6 +11,7 @@ use crate::items::ItemData;
 use crate::login_calendar;
 use crate::login_markers::{LoginMarkers, Player, Station};
 use crate::map_links::{self, MapLinks, TUTORIAL_GATE, TUTORIAL_MAX_LEVEL};
+use crate::quest::{QuestCtx, QuestData, Quests};
 use crate::templates::{Ctx, MenuState, patch_template};
 use lo_core::settings::{Settings, truthy};
 use lo_save::Profile;
@@ -173,6 +174,7 @@ pub struct World<'a> {
     pub markers: &'a LoginMarkers,
     pub cal: &'a EventCalendar,
     pub settings: &'a Settings,
+    pub quests: &'a QuestData,
     pub seed: &'a Value,
     pub now: f64,
     /// `--no-popups`.
@@ -353,10 +355,29 @@ pub fn login_batch(
 }
 
 /// The systems' replacements in the login bundle (`with_quests`), for the systems ported so far: the event calendar.
-pub fn with_systems(w: &World, p: &mut Profile, msgs: Vec<Msg>) -> Vec<Msg> {
+pub fn with_systems(w: &World, p: &mut Profile, quest: &mut Quests, msgs: Vec<Msg>) -> Vec<Msg> {
+    let map_id = p.d["position"]["mapId"].as_i64().unwrap_or(0);
+    quest.set_map(
+        map_id,
+        &w.templates.world_msgs(w.links, map_id, "entry", None),
+    );
+    let qc = QuestCtx {
+        data: w.quests,
+        links: w.links,
+        cal: w.cal,
+        settings: w.settings,
+        now: w.now,
+    };
+    let mut quests_done = false;
     let mut out = Vec::with_capacity(msgs.len());
     for (n, f) in msgs {
         match n.as_str() {
+            "QuestInitializationCommand" | "QuestListCommand" => {
+                if !quests_done {
+                    out.extend(quest.login_msgs(&qc, p));
+                    quests_done = true;
+                }
+            }
             "EventUpdateCommand" => {
                 let c = w.cal.event_cmd(w.now);
                 out.push((c.class.clone(), c.to_json(true)));
