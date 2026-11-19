@@ -6,6 +6,7 @@
 
 pub mod event_appearances;
 pub mod event_calendar;
+pub mod login_markers;
 
 use lo_core::LogDir;
 use lo_protocol::display::{fmt, redact, secrets_of};

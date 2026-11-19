@@ -8,7 +8,7 @@
 | `VersionRequest` → `VersionCommand`, `KeepAlive` → `StayinAlive` | ✅ identique |
 | Sauvegarde (`lo-save`) : lecture, nouveau profil, écriture identique à OpenOrbit | ✅ (profils réécrits octet pour octet) |
 | Marqueurs de connexion qui ne dépendent que de la sauvegarde : `@ayarlar`, `@tuslar`, `@madenler`, `@formasyon`, `@giris_yaniti` | ✅ (identiques à `Profile.generate`, ordre des champs compris) |
-| Marqueurs `@gemi`, `@arayuz`, `@isaret` (ils dépendent du calendrier, des portails, des équipements, des compétences) | à faire (prochaine étape) |
+| Marqueurs `@gemi`, `@arayuz`, `@isaret` (`lo_game::login_markers` : anneaux des portails, console GM, mode admin, fenêtres d'événement selon le calendrier, barres déplacées, robot de réparation, compétence Ingénierie, zone de paix) | ✅ identiques (`crates/lo-game/tests/login_markers.rs`) |
 | Sauvegarde : compléments des anciens profils (`_migrate`), `patch_template` | à faire |
 | Calendrier des événements (`event_calendar.py`, avec `event_appearances.py` et la partie événements de `settings.py`) | ✅ identique (`tools/calendar_diff`, voir ci-dessous) |
 | Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) | à faire (ci-dessous) |
@@ -17,6 +17,21 @@
 Vérification : `tools/game_diff/compare.py` lance `game.py` puis LibreOrbit avec une copie de la même sauvegarde,
 fait jouer le même client scripté (`lo-probe`) et compare les messages reçus et `gs.log`. Aujourd'hui :
 `version,keepalive,version` → aucune différence.
+
+## Marqueurs `@gemi`, `@arayuz`, `@isaret`
+
+`lo_game::login_markers` produit les trois marqueurs qui dépendent d'autres systèmes. Ce que la session liera plus tard est
+passé en argument : énergie du N.O.V.A. (`captain_energy`), visibilités propres à la session (`window_hooks`), joueur
+invité ou hôte, station proche. Comme dans OpenOrbit, lire le niveau d'une compétence ajoute un enregistrement
+`skills` vide à un profil qui n'en a pas.
+
+Vérification : `tools/save_diff/gen_login_markers.py` fait produire les marqueurs par `Profile.generate` pour les profils
+de référence et des variantes (portails terminés, compétence au maximum ou non, P.E.T., barres déplacées avec des ordres
+valides et invalides, robot sur un drone, portail, positions décimales), sous 5 réglages du panneau (console GM, mode admin
+et vaisseau admin), en invité ou non, avec 5 stations (dont une pile au bord de la zone de paix) et des balises en jeu.
+`@arayuz` est demandé à 12 instants, avec et sans visibilités de session, en ne gardant que les instants qui donnent la même
+interface dans 6 fuseaux (de -11 h à +14 h) : le test ne dépend donc pas du fuseau de la machine. Résultat : 135 cas,
+aucune différence. Deux erreurs volontaires (visibilités de session ignorées, bord de la zone de paix) sont détectées.
 
 ## Calendrier des événements
 

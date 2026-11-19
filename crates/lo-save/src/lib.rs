@@ -6,8 +6,8 @@
 //!
 //! Port status: reading, the new-profile seed, saving (atomic, flushed to disk, retried while another program holds the
 //! file on Windows) and the login markers that depend on the save alone (`@ayarlar`, `@tuslar`, `@madenler`,
-//! `@formasyon`, `@giris_yaniti`). Still to come: `@gemi`, `@arayuz`, `@isaret` (they need other systems) and the
-//! completions of old profiles (`_migrate`). Saves of the old v1/v2 formats are converted by OpenOrbit's panel
+//! `@formasyon`, `@giris_yaniti`). `@gemi`, `@arayuz` and `@isaret` need other systems: they are in
+//! `lo_game::login_markers`. Still to come: the completions of old profiles (`_migrate`). Saves of the old v1/v2 formats are converted by OpenOrbit's panel
 //! (`save_migration.py`) and are refused here.
 
 use serde_json::{Map, Value, json};

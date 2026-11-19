@@ -22,7 +22,8 @@ client. Phase 1: the same behaviour as OpenOrbit, then the owner's improvements 
     `calendar_query` example, several scenarios and time zones; `--quick` for a shorter run); the part that does not
     depend on the time zone is also in `crates/lo-game/tests/calendar.rs` (fixture from `gen_fixture.py`);
   * saves: `crates/lo-save/tests` (profiles written by OpenOrbit are rewritten byte for byte; login markers equal
-    `Profile.generate`, expected values written by `tools/save_diff/gen_markers.py`).
+    `Profile.generate`, expected values written by `tools/save_diff/gen_markers.py`; `@gemi`, `@arayuz`, `@isaret` in
+    `crates/lo-game/tests/login_markers.rs`, written by `tools/save_diff/gen_login_markers.py`).
 * Files OpenOrbit writes (profiles, settings) and logs keep exactly the same format: `lo_core::pyjson` reproduces
   Python's `json.dumps`, `lo_protocol::display` its log formatting.
 * Times: OpenOrbit computes in naive local time (`datetime.fromtimestamp`); `lo_core::pytime` reproduces it (same time

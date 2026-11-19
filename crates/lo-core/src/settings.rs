@@ -17,10 +17,15 @@ use std::time::{Duration, Instant, SystemTime};
 pub const REFRESH: Duration = Duration::from_secs(1);
 
 /// On/off switches ported so far, with their defaults (`_b` entries of `SCHEMA`).
-pub const SWITCHES: [(&str, bool); 2] = [
+pub const SWITCHES: [(&str, bool); 4] = [
     ("session_always_open", false),
     ("event_looks_in_shop", true),
+    ("admin_mode", false),
+    ("gm_console", false),
 ];
+
+/// Choices among options ported so far (`type='level'` entries): key, default, number of options.
+pub const LEVELS: [(&str, i64, i64); 1] = [("admin_ship", 0, 5)];
 
 /// The panel's choice for an event (`EVENT_STATES`); no entry means "by the calendar".
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -33,6 +38,7 @@ pub enum EventState {
 #[derive(Debug, Clone, Default, PartialEq)]
 pub struct Values {
     pub switches: BTreeMap<String, bool>,
+    pub levels: BTreeMap<String, i64>,
     pub events: BTreeMap<String, EventState>,
 }
 
@@ -46,6 +52,22 @@ impl Values {
         for (k, _) in SWITCHES {
             if let Some(v) = m.get(k) {
                 out.switches.insert(k.to_string(), truthy(v));
+            }
+        }
+        for (k, _, n) in LEVELS {
+            // min(len(options) - 1, max(0, int(v))); int() of a bool, a number or a text holding an integer
+            let v = match m.get(k) {
+                Some(Value::Bool(b)) => Some(i64::from(*b)),
+                Some(Value::Number(x)) => x.as_i64().or_else(|| {
+                    x.as_f64()
+                        .filter(|f| f.is_finite())
+                        .map(|f| f.trunc() as i64)
+                }),
+                Some(Value::String(s)) => s.trim().parse::<i64>().ok(),
+                _ => None,
+            };
+            if let Some(v) = v {
+                out.levels.insert(k.to_string(), v.max(0).min(n - 1));
             }
         }
         if let Some(ev) = m.get("events").and_then(Value::as_object) {
@@ -144,6 +166,16 @@ impl Settings {
         self.current().switches.get(key).copied().unwrap_or(default)
     }
 
+    /// A choice among options from [`LEVELS`] (its index).
+    pub fn level(&self, key: &str) -> i64 {
+        let default = LEVELS
+            .iter()
+            .find(|(k, _, _)| *k == key)
+            .map(|(_, d, _)| *d)
+            .unwrap_or_else(|| panic!("unknown level setting {key}"));
+        self.current().levels.get(key).copied().unwrap_or(default)
+    }
+
     /// The panel's choice for an event (`event_state`).
     pub fn event_state(&self, key: &str) -> Option<EventState> {
         self.current().events.get(key).copied()
@@ -184,7 +216,7 @@ mod tests {
     #[test]
     fn clean() {
         let v = Values::clean(&json!({
-            "session_always_open": 1, "event_looks_in_shop": "", "unknown": true,
+            "session_always_open": 1, "event_looks_in_shop": "", "unknown": true, "admin_ship": 9,
             "events": {"halloween": "on", "winter": "off", "agatus": true, "spring": null}
         }));
         assert!(v.switches["session_always_open"]);
@@ -196,5 +228,7 @@ mod tests {
         assert_eq!(s.event_state("winter"), Some(EventState::Off));
         assert_eq!(s.event_state("agatus"), None);
         assert!(Settings::unbound().switch("event_looks_in_shop"));
+        assert_eq!(s.level("admin_ship"), 4);
+        assert_eq!(Settings::unbound().level("admin_ship"), 0);
     }
 }
