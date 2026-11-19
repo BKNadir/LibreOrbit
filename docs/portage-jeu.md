@@ -11,6 +11,7 @@
 | Marqueurs `@gemi`, `@arayuz`, `@isaret` (`lo_game::login_markers` : anneaux des portails, console GM, mode admin, fenêtres d'événement selon le calendrier, barres déplacées, robot de réparation, compétence Ingénierie, zone de paix) | ✅ identiques (`crates/lo-game/tests/login_markers.rs`) |
 | Sauvegarde : compléments des anciens profils (`Profile::migrate`, `Profile::load` = le `Profile(...)` d'OpenOrbit) | ✅ identiques (`crates/lo-save/tests/migrate.rs`, 16 cas de `gen_migrate.py`, document et ordre des clés compris) |
 | Cartes et portails (`map_links.py`, `map_layout.py` → `lo_game::map_links`, `map_layout`) et le `random` de Python (`lo_core::pyrandom`) | ✅ identiques (`tools/map_diff`) |
+| Réglages du jeu (`settings.py` → `lo_core::settings` : schéma complet exporté, multiplicateurs et sous-réglages, écriture du fichier, résumé du panneau) | ✅ identiques (`tools/settings_diff`, 403 documents, 1,28 million de valeurs) |
 | `patch_template` (modèles de connexion adaptés au profil) | à faire (prochaine étape) |
 | Calendrier des événements (`event_calendar.py`, avec `event_appearances.py` et la partie événements de `settings.py`) | ✅ identique (`tools/calendar_diff`, voir ci-dessous) |
 | Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) | à faire (ci-dessous) |

@@ -23,6 +23,8 @@ client. Phase 1: the same behaviour as OpenOrbit, then the owner's improvements 
     depend on the time zone is also in `crates/lo-game/tests/calendar.rs` (fixture from `gen_fixture.py`);
   * maps and portals: `tools/map_diff/compare.py <OpenOrbit>` (same queries to `map_links.py` / `map_layout.py` and
     to the `map_query` example; random draws compared with the same seed through `lo_core::pyrandom`);
+  * settings: `tools/settings_diff/compare.py <OpenOrbit>` (cleaning, file text, multipliers, helpers, summary); the
+    schema is exported from `settings.py` by `tools/settings_diff/export_schema.py` into `crates/lo-core/src/settings_schema.json`;
   * saves: `crates/lo-save/tests` (profiles written by OpenOrbit are rewritten byte for byte; login markers equal
     `Profile.generate`, expected values written by `tools/save_diff/gen_markers.py`; `@gemi`, `@arayuz`, `@isaret` in
     `crates/lo-game/tests/login_markers.rs`, written by `tools/save_diff/gen_login_markers.py`; `_migrate` in
