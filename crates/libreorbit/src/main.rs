@@ -61,10 +61,10 @@ fn main() -> ExitCode {
                     return ExitCode::FAILURE;
                 }
             };
-            let game = match lo_game::Game::new(cfg, spec) {
+            let game = match lo_game::Game::new(cfg, spec, &layout, rest) {
                 Ok(g) => g,
                 Err(e) => {
-                    eprintln!("log folder: {e}");
+                    eprintln!("{e}");
                     return ExitCode::FAILURE;
                 }
             };

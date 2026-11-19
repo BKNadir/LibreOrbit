@@ -14,7 +14,7 @@
 | Réglages du jeu (`settings.py` → `lo_core::settings` : schéma complet exporté, multiplicateurs et sous-réglages, écriture du fichier, résumé du panneau) | ✅ identiques (`tools/settings_diff`, 403 documents, 1,28 million de valeurs) |
 | `patch_template` (`lo_game::templates`) avec ce qu'il lit : `extras.py`, `booster.py`, la partie profil de `technology.py`, `ship_ability.py` et `combat_items.py` (barre de raccourcis, temps de recharge, CPU, lanceur) | ✅ identiques (`tools/profile_diff`, voir ci-dessous) |
 | Calendrier des événements (`event_calendar.py`, avec `event_appearances.py` et la partie événements de `settings.py`) | ✅ identique (`tools/calendar_diff`, voir ci-dessous) |
-| Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) | à faire (ci-dessous) |
+| Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) : paquets de connexion (`lo_game::bundles`) avec les systèmes déjà portés | ✅ branché ; il reste les systèmes non portés (ci-dessous) |
 | Simulation de la carte, combat, systèmes du jeu | à faire |
 
 Vérification : `tools/game_diff/compare.py` lance `game.py` puis LibreOrbit avec une copie de la même sauvegarde,
@@ -69,6 +69,19 @@ P.E.T., laboratoire…), à des instants et avec des réglages variés ; les deu
 l'ordre puis comparent les états du menu, le panneau de saut, les boosters, les utilisations, les minuteurs et le profil
 après. Résultat : 60 cas, 2,87 millions de valeurs, aucune différence (sur deux graines). Les erreurs volontaires testées
 (compteur des CPU, plafond des boosters) sont détectées.
+
+## Où en est la connexion
+
+LibreOrbit répond maintenant à `LoginRequest` et `ReadyRequest` avec les paquets du modèle : marqueurs produits depuis la
+sauvegarde, messages adaptés au profil (`patch_template`), monde de la carte (enregistré ou produit), calendrier des
+événements (`EventUpdateCommand`, décors). Les systèmes pas encore portés laissent leurs messages enregistrés tels quels
+(ou ne les ajoutent pas). `tools/game_diff/compare.py … version,login,ready` aligne les deux flux (difflib) et résume les
+écarts par message :
+
+* 19/11/2026 : 370 messages (Python) / 318 (Rust), 88 différences. Restent : rang du jour (`ranks.py`, `dailyRank`),
+  Battle Pass et Season Pass, quêtes, récompenses quotidiennes et Mini Client, boutique (inventaire, modules), P.E.T.,
+  nouveaux systèmes (N.O.V.A., QFC, Synthesis…), social (tchat, courrier), modes (EBL, Rogue-Lite, Escort), événements
+  supplémentaires, puis le monde de la carte (aliens, boîtes, minerais) au chargement.
 
 ## Calendrier des événements
 

@@ -5,7 +5,7 @@ Usage (Python 3, standard library only):
   python3 -I compare.py <OpenOrbit checkout> <libreorbit executable> <lo-probe executable> <LibreOrbit root> [steps]
 Steps: lo-probe's (default "version,keepalive,version"). LibreOrbit is not expected to match beyond what is ported.
 """
-import json, os, re, shutil, socket, subprocess, sys, tempfile, time
+import collections, difflib, json, os, re, shutil, socket, subprocess, sys, tempfile, time
 
 OO, EXE, PROBE, LO_ROOT = (os.path.abspath(a) for a in sys.argv[1:5])
 STEPS = sys.argv[5] if len(sys.argv) > 5 else 'version,keepalive,version'
@@ -78,21 +78,39 @@ def main():
     base = make_save(tempfile.mkdtemp(prefix='lo_game_base_'))
     py, pyl = run('python', base)
     rs, rsl = run('rust', base)
-    diffs = 0
-    for i in range(max(len(py), len(rs))):
-        a = py[i] if i < len(py) else None
-        b = rs[i] if i < len(rs) else None
-        if a != b:
+    # messages aligned (difflib): a missing or extra message counts once instead of shifting everything after it
+    a = [json.dumps(m, sort_keys=True) for m in py]
+    b = [json.dumps(m, sort_keys=True) for m in rs]
+    diffs, shown = 0, 0
+    missing, extra, changed = collections.Counter(), collections.Counter(), collections.Counter()
+    for op, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
+        if op == 'equal':
+            continue
+        for k in range(max(i2 - i1, j2 - j1)):
+            x = py[i1 + k] if i1 + k < i2 else None
+            y = rs[j1 + k] if j1 + k < j2 else None
             diffs += 1
-            if diffs <= 20:
-                print('DIFF message %d\n  python: %s\n  rust:   %s' % (i + 1, json.dumps(a)[:300], json.dumps(b)[:300]))
+            if x and y and x.get('name') == y.get('name'):
+                changed[x['name']] += 1
+            else:
+                if x:
+                    missing[x['name']] += 1
+                if y:
+                    extra[y['name']] += 1
+            if shown < 20:
+                shown += 1
+                print('DIFF message %s/%s\n  python: %s\n  rust:   %s' % (i1 + k + 1, j1 + k + 1, json.dumps(x)[:300], json.dumps(y)[:300]))
     for i in range(max(len(pyl), len(rsl))):
-        a = pyl[i] if i < len(pyl) else None
-        b = rsl[i] if i < len(rsl) else None
-        if a != b:
+        x = pyl[i] if i < len(pyl) else None
+        y = rsl[i] if i < len(rsl) else None
+        if x != y:
             diffs += 1
-            if diffs <= 40:
-                print('DIFF gs.log line %d\n  python: %s\n  rust:   %s' % (i + 1, a, b))
+            if shown < 40:
+                shown += 1
+                print('DIFF gs.log line %d\n  python: %s\n  rust:   %s' % (i + 1, x, y))
+    for label, c in (('different', changed), ('only in python', missing), ('only in rust', extra)):
+        if c:
+            print('%s: %s' % (label, ', '.join('%s %d' % kv for kv in c.most_common())))
     print('steps %s: %d messages (python) / %d (rust), %d log lines, %d differences' % (STEPS, len(py), len(rs), len(pyl), diffs))
     sys.exit(1 if diffs else 0)
 
