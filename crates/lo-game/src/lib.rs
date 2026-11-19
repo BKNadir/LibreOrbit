@@ -13,11 +13,13 @@ pub mod extras;
 pub mod items;
 pub mod login_calendar;
 pub mod login_markers;
+pub mod mail;
 pub mod map_layout;
 pub mod map_links;
 pub mod quest;
 pub mod ranks;
 pub mod ship_ability;
+pub mod social;
 pub mod technology;
 pub mod templates;
 
@@ -308,6 +310,7 @@ impl Session {
                 let msgs = {
                     let game = self.game.clone();
                     let mut p = game.profile.lock().unwrap_or_else(|e| e.into_inner());
+                    crate::mail::open(&mut p, lo_core::pytime::now());
                     self.revive_on_login(&mut p);
                     let now = lo_core::pytime::now();
                     game.ranks.daily_rank(

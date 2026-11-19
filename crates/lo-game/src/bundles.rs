@@ -12,6 +12,7 @@ use crate::login_calendar;
 use crate::login_markers::{LoginMarkers, Player, Station};
 use crate::map_links::{self, MapLinks, TUTORIAL_GATE, TUTORIAL_MAX_LEVEL};
 use crate::quest::{QuestCtx, QuestData, Quests};
+use crate::social;
 use crate::templates::{Ctx, MenuState, patch_template};
 use lo_core::settings::{Settings, truthy};
 use lo_save::Profile;
@@ -386,7 +387,10 @@ pub fn with_systems(w: &World, p: &mut Profile, quest: &mut Quests, msgs: Vec<Ms
             "NpcEventInfoCommand" | "NpcEventBossInfoCommand" => {}
             // today's reward was claimed: the calendar does not open at login
             "DailyLoginRewardDayCommand" if login_calendar::claimed_today(p, w.now) => {}
-            _ => out.push((n, f)),
+            _ => match social::login_replace(&n, &f, p, social::CHAT_PORT, None) {
+                Some(rep) => out.extend(rep),
+                None => out.push((n, f)),
+            },
         }
     }
     out

@@ -14,6 +14,7 @@
 | Réglages du jeu (`settings.py` → `lo_core::settings` : schéma complet exporté, multiplicateurs et sous-réglages, écriture du fichier, résumé du panneau) | ✅ identiques (`tools/settings_diff`, 403 documents, 1,28 million de valeurs) |
 | `patch_template` (`lo_game::templates`) avec ce qu'il lit : `extras.py`, `booster.py`, la partie profil de `technology.py`, `ship_ability.py` et `combat_items.py` (barre de raccourcis, temps de recharge, CPU, lanceur) | ✅ identiques (`tools/profile_diff`, voir ci-dessous) |
 | Rang du jour (`ranks.py` → `lo_game::ranks` : points, rang, record du jour, récompense du mois, `dailyRank`) | ✅ identique (`tools/profile_diff`, avec `daily_rank` et le détail des points) |
+| Courrier et social à la connexion (`mail.py`, `social.login_replace` → `lo_game::mail`, `lo_game::social` : boîtes et message de bienvenue, messages non lus, adresse du tchat local) ; le tchat lui-même et les requêtes de la messagerie viendront avec l'étape 10 | ✅ `tools/game_diff` (`ChatParamCommand`, `UserMessageNewCommand` identiques) |
 | Quêtes à la connexion (`quest.py` → `lo_game::quest` : liste, définitions avec l'état des conditions, offre du jour et de la semaine, marques de la minicarte) ; accepter, progresser, récompenses et minuteurs viendront avec le monde | ✅ identique (`tools/profile_diff`) |
 | Calendrier de connexion (`login_calendar.py` → `lo_game::login_calendar` : état du mois, `DailyLoginRewardDayCommand`, listes renouvelées chaque année) ; la réclamation viendra avec la boutique | ✅ identique (`tools/profile_diff`) |
 | Calendrier des événements (`event_calendar.py`, avec `event_appearances.py` et la partie événements de `settings.py`) | ✅ identique (`tools/calendar_diff`, voir ci-dessous) |
@@ -85,7 +86,7 @@ sauvegarde, messages adaptés au profil (`patch_template`), monde de la carte (e
   portés ; `compare.py` tolère maintenant quelques secondes d'écart sur les compteurs qui suivent l'horloge). Restent :
   Battle Pass (dont la durée des événements qu'il prolonge dans `EventUpdateCommand`) et Season Pass, quêtes
   d'événement, récompenses quotidiennes et Mini Client, boutique (inventaire, modules), P.E.T., nouveaux systèmes
-  (N.O.V.A., QFC, Synthesis…), social (tchat, courrier), modes (EBL, Rogue-Lite, Escort), événements supplémentaires,
+  (N.O.V.A., QFC, Synthesis…), modes (EBL, Rogue-Lite, Escort), événements supplémentaires,
   puis le monde de la carte (aliens, boîtes, minerais) au chargement.
 
 ## Calendrier des événements
