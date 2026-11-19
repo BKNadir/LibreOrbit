@@ -11,6 +11,7 @@
 //! other systems: they are in `lo_game::login_markers`. Saves of the old v1/v2 formats are converted by OpenOrbit's panel
 //! (`save_migration.py`) and are refused here.
 
+pub mod hangar;
 mod migrate;
 
 pub use migrate::{CARGO_ORES, NEW_WINDOWS};

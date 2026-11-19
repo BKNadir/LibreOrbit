@@ -12,7 +12,7 @@
 | Sauvegarde : compléments des anciens profils (`Profile::migrate`, `Profile::load` = le `Profile(...)` d'OpenOrbit) | ✅ identiques (`crates/lo-save/tests/migrate.rs`, 16 cas de `gen_migrate.py`, document et ordre des clés compris) |
 | Cartes et portails (`map_links.py`, `map_layout.py` → `lo_game::map_links`, `map_layout`) et le `random` de Python (`lo_core::pyrandom`) | ✅ identiques (`tools/map_diff`) |
 | Réglages du jeu (`settings.py` → `lo_core::settings` : schéma complet exporté, multiplicateurs et sous-réglages, écriture du fichier, résumé du panneau) | ✅ identiques (`tools/settings_diff`, 403 documents, 1,28 million de valeurs) |
-| `patch_template` (modèles de connexion adaptés au profil) | à faire (prochaine étape) |
+| `patch_template` (`lo_game::templates`) avec ce qu'il lit : `extras.py`, `booster.py`, la partie profil de `technology.py`, `ship_ability.py` et `combat_items.py` (barre de raccourcis, temps de recharge, CPU, lanceur) | ✅ identiques (`tools/profile_diff`, voir ci-dessous) |
 | Calendrier des événements (`event_calendar.py`, avec `event_appearances.py` et la partie événements de `settings.py`) | ✅ identique (`tools/calendar_diff`, voir ci-dessous) |
 | Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) | à faire (ci-dessous) |
 | Simulation de la carte, combat, systèmes du jeu | à faire |
@@ -51,6 +51,24 @@ d'arrivée pour chaque couple de cartes, bulles, 300 points et 120 segments par 
 hasard avec la même graine, dans 3 scénarios (standard, sans limite de niveau, monde du World Editor qui modifie
 `map_layout.json`). Résultat : 411 660 valeurs, aucune différence. Deux erreurs volontaires (rotation des avant-postes,
 départage des égalités de l'A*) sont détectées.
+
+## `patch_template` et les systèmes d'équipement
+
+`lo_game::templates::patch_template` adapte chaque message du modèle de connexion au profil, comme OpenOrbit : vitesse,
+laboratoire, jour de connexion, boosters, fenêtre du P.E.T., panneau de saut, camouflage, blocage des invitations, numéro
+de configuration, coupons de saut, éléments de fenêtre et tout le menu de raccourcis (`MenuInitializationCommand` : état de
+chaque objet, temps de recharge, barres premium, raccourcis du joueur, barres déplacées). Ce que la session retient du menu
+(états du modèle, états envoyés, dernier `CPUInitializationCommand`) est dans `MenuState`. Les systèmes lus sont portés pour
+leur partie « profil » : `extras` (CPU, utilisations), `booster`, `technology`, `ship_ability`, `combat_items` ; leurs
+effets sur la carte viendront avec la simulation.
+
+Vérification : `tools/profile_diff/compare.py` construit des profils au hasard à partir d'un profil réel (CPU montés, en
+inventaire ou sur les drones, lanceurs et chargement, drones et formations, munitions, mines, xénomit, coupons, boosters
+anciens et nouveaux, technologies, capacités de vaisseau, temps de recharge, cartes spéciales, raccourcis, barres déplacées,
+P.E.T., laboratoire…), à des instants et avec des réglages variés ; les deux côtés appliquent tout le modèle de connexion dans
+l'ordre puis comparent les états du menu, le panneau de saut, les boosters, les utilisations, les minuteurs et le profil
+après. Résultat : 60 cas, 2,87 millions de valeurs, aucune différence (sur deux graines). Les erreurs volontaires testées
+(compteur des CPU, plafond des boosters) sont détectées.
 
 ## Calendrier des événements
 

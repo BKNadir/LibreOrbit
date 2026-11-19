@@ -54,6 +54,7 @@ python3 -I tools/game_diff/compare.py ../OpenOrbit target/debug/libreorbit targe
 python3 -I tools/calendar_diff/compare.py ../OpenOrbit [--quick]                    # calendrier des événements
 python3 -I tools/map_diff/compare.py ../OpenOrbit                                   # cartes et portails
 python3 -I tools/settings_diff/compare.py ../OpenOrbit                              # réglages du jeu
+python3 -I tools/profile_diff/compare.py ../OpenOrbit                               # modèle de connexion et équipement
 ```
 
 Pour essayer LibreOrbit dans le panneau d'OpenOrbit : [`tools/openorbit_bridge`](tools/openorbit_bridge/README.md).

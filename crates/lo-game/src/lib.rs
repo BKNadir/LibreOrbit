@@ -4,11 +4,18 @@
 //! `game.py`. The login bundles and the game systems come next (see `docs/portage-jeu.md`); a request the server does not
 //! handle yet is logged as such and left unanswered.
 
+pub mod booster;
+pub mod combat_items;
 pub mod event_appearances;
 pub mod event_calendar;
+pub mod extras;
+pub mod items;
 pub mod login_markers;
 pub mod map_layout;
 pub mod map_links;
+pub mod ship_ability;
+pub mod technology;
+pub mod templates;
 
 use lo_core::LogDir;
 use lo_protocol::display::{fmt, redact, secrets_of};

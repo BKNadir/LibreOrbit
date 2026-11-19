@@ -25,6 +25,8 @@ client. Phase 1: the same behaviour as OpenOrbit, then the owner's improvements 
     to the `map_query` example; random draws compared with the same seed through `lo_core::pyrandom`);
   * settings: `tools/settings_diff/compare.py <OpenOrbit>` (cleaning, file text, multipliers, helpers, summary); the
     schema is exported from `settings.py` by `tools/settings_diff/export_schema.py` into `crates/lo-core/src/settings_schema.json`;
+  * login template and equipment systems: `tools/profile_diff/compare.py <OpenOrbit>` (random profiles, the whole login
+    template patched on both sides, menu states, timers, the profile after);
   * saves: `crates/lo-save/tests` (profiles written by OpenOrbit are rewritten byte for byte; login markers equal
     `Profile.generate`, expected values written by `tools/save_diff/gen_markers.py`; `@gemi`, `@arayuz`, `@isaret` in
     `crates/lo-game/tests/login_markers.rs`, written by `tools/save_diff/gen_login_markers.py`; `_migrate` in
