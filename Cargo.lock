@@ -433,6 +433,7 @@ name = "lo-core"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "libc",
  "serde_json",
 ]
 
@@ -440,8 +441,10 @@ dependencies = [
 name = "lo-game"
 version = "0.1.0"
 dependencies = [
+ "chrono",
  "lo-core",
  "lo-protocol",
+ "serde_json",
  "tokio",
 ]
 

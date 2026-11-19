@@ -6,12 +6,16 @@
 //!   answers OpenOrbit wrote this way; keeping the same bytes keeps the comparisons exact).
 //! * [`pyrepr`], [`xml`]: Python's `repr(bytes)` and `quoteattr`, used in logs and XML answers.
 //! * [`LogDir`]: the per-server log files (`HH:MM:SS text` lines).
+//! * [`pytime`]: Python's naive local time (`datetime.fromtimestamp`, `timestamp()`), for the calendars.
+//! * [`settings`]: the game settings file (`settings.py`), the parts ported so far.
 
 mod data;
 mod layout;
 mod logs;
 pub mod pyjson;
 pub mod pyrepr;
+pub mod pytime;
+pub mod settings;
 pub mod xml;
 
 pub use data::{GameData, World};

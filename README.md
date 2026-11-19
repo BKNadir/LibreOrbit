@@ -33,7 +33,7 @@ crates/libreorbit    l'exécutable (`libreorbit web …`, `libreorbit game …`)
 frontends/openorbit  interface du panneau d'OpenOrbit, copiée telle quelle
 data/, cdn/          données et fichiers CDN repris d'OpenOrbit (voir NOTICE.md)
 docs/                architecture, décisions, API du panneau
-tools/               comparaisons avec OpenOrbit (protocole, serveur web), lancement depuis son panneau
+tools/               comparaisons avec OpenOrbit (protocole, serveur web, jeu, calendrier), lancement depuis son panneau
 ```
 
 ## Développement
@@ -51,6 +51,7 @@ Comparaisons avec OpenOrbit (il faut Python 3 et une copie d'OpenOrbit) :
 tools/protocol_diff/run.sh ../OpenOrbit                                              # protocole, cas aléatoires
 sudo python3 -I tools/web_diff/compare.py ../OpenOrbit target/debug/libreorbit .     # serveur web (ports 80, 8090…)
 python3 -I tools/game_diff/compare.py ../OpenOrbit target/debug/libreorbit target/debug/lo-probe .   # serveur de jeu
+python3 -I tools/calendar_diff/compare.py ../OpenOrbit [--quick]                    # calendrier des événements
 ```
 
 Pour essayer LibreOrbit dans le panneau d'OpenOrbit : [`tools/openorbit_bridge`](tools/openorbit_bridge/README.md).

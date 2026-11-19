@@ -18,16 +18,21 @@ client. Phase 1: the same behaviour as OpenOrbit, then the owner's improvements 
   * protocol: `tools/protocol_diff/run.sh <OpenOrbit>` (bytes, values, errors, log formatting);
   * web server: `tools/web_diff/compare.py` (real ports, same save, 38 requests, logs and written files);
   * game server: `tools/game_diff/compare.py` with `lo-probe` steps (messages received and gs.log);
+  * event calendar: `tools/calendar_diff/compare.py <OpenOrbit>` (the same queries to `event_calendar.py` and to the
+    `calendar_query` example, several scenarios and time zones; `--quick` for a shorter run); the part that does not
+    depend on the time zone is also in `crates/lo-game/tests/calendar.rs` (fixture from `gen_fixture.py`);
   * saves: `crates/lo-save/tests` (profiles written by OpenOrbit are rewritten byte for byte; login markers equal
     `Profile.generate`, expected values written by `tools/save_diff/gen_markers.py`).
 * Files OpenOrbit writes (profiles, settings) and logs keep exactly the same format: `lo_core::pyjson` reproduces
   Python's `json.dumps`, `lo_protocol::display` its log formatting.
+* Times: OpenOrbit computes in naive local time (`datetime.fromtimestamp`); `lo_core::pytime` reproduces it (same time
+  zone, same answers). Keep that semantic for every calendar or schedule.
 * Deliberate differences with OpenOrbit are listed in docs/architecture.md.
 * `data/` and `cdn/` are unchanged copies of OpenOrbit's at the commit in NOTICE.md; refresh them as a whole.
 
 ## Layout
 
-crates/lo-core (layout, data + worlds, Python-style JSON, logs), lo-protocol (client protocol), lo-save (profile),
+crates/lo-core (layout, data + worlds, Python-style JSON, logs, Python local time, settings), lo-protocol (client protocol), lo-save (profile),
 lo-web (web login, done), lo-game (game server, in progress), lo-probe (scripted test client), libreorbit (the executable).
 frontends/openorbit: OpenOrbit's panel interface, unchanged. tools/openorbit_bridge: run LibreOrbit from OpenOrbit's panel.
 

@@ -4,6 +4,9 @@
 //! `game.py`. The login bundles and the game systems come next (see `docs/portage-jeu.md`); a request the server does not
 //! handle yet is logged as such and left unanswered.
 
+pub mod event_appearances;
+pub mod event_calendar;
+
 use lo_core::LogDir;
 use lo_protocol::display::{fmt, redact, secrets_of};
 use lo_protocol::{Framer, Spec, Struct, frame};

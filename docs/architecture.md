@@ -21,6 +21,7 @@ mode créatif) viennent ensuite, sur une base dont le comportement est déjà v�
 | `web.py` | connexion web du client (links.php, login.php, maps.php), fichiers CDN | 8090, 80 (+843, 9339, 8082) | `lo-web` ✅ |
 | `paths.py`, `game_data.py`, `platform_compat.py` | emplacements, données avec les patchs du World Editor | | `lo-core` ✅ |
 | `game.py` | sessions, connexion, paquets de bienvenue, routage des requêtes | 8081 | `lo-game` (en cours, voir [`portage-jeu.md`](portage-jeu.md)) |
+| `settings.py` (lecture), `event_calendar.py`, `event_appearances.py` | réglages du jeu, calendrier des événements | | `lo-core::settings`, `lo-game` ✅ (réglages : partie événements) |
 | `world.py` et une centaine de modules | simulation des cartes, combat, systèmes du jeu | | `lo-game` (un module par système) |
 | `chat.py` | tchat (protocole « AChat » / Infinicast) | 7771 | `lo-chat` |
 | `player_profile.py`, `save_*.py` | sauvegarde du joueur | | `lo-save` |
@@ -33,7 +34,7 @@ Le tout sera livré comme un seul exécutable (`libreorbit`), avec des sous-comm
 
 ```
 crates/
-  lo-core/       emplacements, données + mondes, JSON façon Python, logs ✅
+  lo-core/       emplacements, données + mondes, JSON façon Python, logs, heure locale de Python, réglages ✅
   lo-protocol/   protocole du client                                   ✅
   lo-save/       sauvegardes (même format que profile.json d'OpenOrbit) en cours
   lo-web/        connexion web du client (8090, 80)                    ✅
