@@ -4,9 +4,11 @@
 //! straight into messages, and a save written by LibreOrbit is byte-for-byte what OpenOrbit writes
 //! (`json.dumps(d, ensure_ascii=False, indent=1)`), so both can open the same slots.
 //!
-//! Port status: reading, the new-profile seed, and saving (atomic, flushed to disk, retried while another program holds
-//! the file on Windows). The completions of old profiles (`_migrate`) and the login markers (`generate`) come next. Saves of
-//! the old v1/v2 formats are converted by OpenOrbit's panel (`save_migration.py`) and are refused here.
+//! Port status: reading, the new-profile seed, saving (atomic, flushed to disk, retried while another program holds the
+//! file on Windows) and the login markers that depend on the save alone (`@ayarlar`, `@tuslar`, `@madenler`,
+//! `@formasyon`, `@giris_yaniti`). Still to come: `@gemi`, `@arayuz`, `@isaret` (they need other systems) and the
+//! completions of old profiles (`_migrate`). Saves of the old v1/v2 formats are converted by OpenOrbit's panel
+//! (`save_migration.py`) and are refused here.
 
 use serde_json::{Map, Value, json};
 use std::io::Write;
@@ -151,6 +153,29 @@ impl Profile {
         self.d.get("pilot")?.get("userId")?.as_i64()
     }
 
+    /// A login marker of the template (`@…`) -> (message name, fields), for the markers ported so far (`Profile.generate`).
+    pub fn generate(&self, marker: &str) -> Option<(&'static str, Value)> {
+        let d = &self.d;
+        let field = |k: &str| d.get(k).cloned().unwrap_or(Value::Null);
+        Some(match marker {
+            "@ayarlar" => ("UserSettingsCommand", settings_command(&field("settings"))),
+            "@tuslar" => (
+                "UserKeyBindingsUpdate",
+                json!({"changedKeyBindings": field("key_bindings")}),
+            ),
+            "@madenler" => (
+                "AttributeOreCountUpdateCommand",
+                json!({"oreCountList": field("ores")}),
+            ),
+            "@formasyon" => (
+                "DroneFormationChangeCommand",
+                json!({"uid": d.get("pilot").and_then(|p| p.get("userId")).cloned().unwrap_or(Value::Null), "selectedFormationId": field("formation")}),
+            ),
+            "@giris_yaniti" => ("LoginResponse", json!({"status": 0})),
+            _ => return None,
+        })
+    }
+
     /// The text written to the file: `json.dumps(d, ensure_ascii=False, indent=1)`.
     pub fn text(&self) -> String {
         lo_core::pyjson::dumps_with(&self.d, false, Some(1))
@@ -193,6 +218,43 @@ impl Profile {
                 Err(e) => return Err(e.into()),
             }
         }
+    }
+}
+
+/// `@ayarlar`: the saved settings. A quality module never saved (`notSet`, a new profile) goes out as the high preset:
+/// the client skips a `notSet` module and keeps its own default 0, which turns the engine trail off on every ship.
+fn settings_command(a: &Value) -> Value {
+    let mut a = a.clone();
+    let not_set = a
+        .get("qualitySettingsModule")
+        .and_then(|q| q.get("notSet"))
+        .is_some_and(truthy);
+    if not_set {
+        if let Some(Value::Object(q)) = a.get_mut("qualitySettingsModule") {
+            let high: Vec<String> = q
+                .keys()
+                .filter(|k| k.starts_with("quality") && *k != "qualityCustomized")
+                .cloned()
+                .collect();
+            q.insert("notSet".into(), json!(false));
+            q.insert("qualityCustomized".into(), json!(false));
+            for k in high {
+                q.insert(k, json!(3));
+            }
+        }
+    }
+    a
+}
+
+/// Python truthiness of a JSON value.
+pub fn truthy(v: &Value) -> bool {
+    match v {
+        Value::Null => false,
+        Value::Bool(b) => *b,
+        Value::Number(n) => n.as_f64() != Some(0.0),
+        Value::String(s) => !s.is_empty(),
+        Value::Array(a) => !a.is_empty(),
+        Value::Object(m) => !m.is_empty(),
     }
 }
 

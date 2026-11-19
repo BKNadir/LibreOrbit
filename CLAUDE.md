@@ -18,7 +18,8 @@ client. Phase 1: the same behaviour as OpenOrbit, then the owner's improvements 
   * protocol: `tools/protocol_diff/run.sh <OpenOrbit>` (bytes, values, errors, log formatting);
   * web server: `tools/web_diff/compare.py` (real ports, same save, 38 requests, logs and written files);
   * game server: `tools/game_diff/compare.py` with `lo-probe` steps (messages received and gs.log);
-  * saves: `crates/lo-save/tests` (profiles written by OpenOrbit are rewritten byte for byte).
+  * saves: `crates/lo-save/tests` (profiles written by OpenOrbit are rewritten byte for byte; login markers equal
+    `Profile.generate`, expected values written by `tools/save_diff/gen_markers.py`).
 * Files OpenOrbit writes (profiles, settings) and logs keep exactly the same format: `lo_core::pyjson` reproduces
   Python's `json.dumps`, `lo_protocol::display` its log formatting.
 * Deliberate differences with OpenOrbit are listed in docs/architecture.md.

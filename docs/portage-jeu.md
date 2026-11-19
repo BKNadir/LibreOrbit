@@ -7,7 +7,10 @@
 | Écoute du port 8081, tramage, journal `gs.log` (même format, clé de session masquée) | ✅ identique à `game.py` |
 | `VersionRequest` → `VersionCommand`, `KeepAlive` → `StayinAlive` | ✅ identique |
 | Sauvegarde (`lo-save`) : lecture, nouveau profil, écriture identique à OpenOrbit | ✅ (profils réécrits octet pour octet) |
-| Sauvegarde : compléments des anciens profils (`_migrate`), marqueurs `@…`, `patch_template` | à faire |
+| Marqueurs de connexion qui ne dépendent que de la sauvegarde : `@ayarlar`, `@tuslar`, `@madenler`, `@formasyon`, `@giris_yaniti` | ✅ (identiques à `Profile.generate`, ordre des champs compris) |
+| Marqueurs `@gemi`, `@arayuz`, `@isaret` (ils dépendent du calendrier, des portails, des équipements, des compétences) | à faire |
+| Sauvegarde : compléments des anciens profils (`_migrate`), `patch_template` | à faire |
+| Calendrier des événements (`event_calendar.py`) : prochaine étape, nécessaire à `@arayuz` et à la plupart des systèmes | à faire |
 | Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) | à faire (ci-dessous) |
 | Simulation de la carte, combat, systèmes du jeu | à faire |
 
