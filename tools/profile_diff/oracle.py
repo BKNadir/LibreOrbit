@@ -8,7 +8,7 @@ login template patched in order, then the shortcut menu's cached states, the rep
 update, the extras' uses and charges, the timers of the combat items, technology and abilities, and the profile document after. The daily rank is computed
 first, as at login.
 """
-import copy, json, os, sys, time, types
+import copy, datetime, json, os, sys, time, types
 
 oo, cases_path, out_path = (os.path.abspath(a) for a in sys.argv[1:4])
 prepared_path = os.path.abspath(sys.argv[4]) if len(sys.argv) > 4 else None
@@ -27,6 +27,16 @@ import technology as TECH  # noqa: E402
 import ship_ability as SA  # noqa: E402
 import combat_items as CIT  # noqa: E402
 import ranks as RT  # noqa: E402
+import login_calendar as LC  # noqa: E402
+
+
+class _Now(datetime.datetime):
+    @classmethod
+    def now(cls, tz=None):
+        return datetime.datetime.fromtimestamp(NOW[0], tz)
+
+
+LC.datetime = types.SimpleNamespace(date=datetime.date, datetime=_Now, time=datetime.time)
 
 tpl = json.load(open(os.path.join(oo, 'server', 'data', 'defaults', 'login.json'), encoding='utf8'))
 seed = tpl.get('seed', {})
@@ -43,13 +53,16 @@ for c in cases:
     if c.get('daily'):
         p.daily_fields = (lambda d=c['daily']: dict(d))
     rank = [RT.daily_rank(p, force=bool(c.get('force_rank'))), RT.breakdown(p)]
+    dl = LC.DailyLogin(p, None)
+    dl.today = lambda: datetime.date.fromtimestamp(NOW[0])
+    daily = [dl.fields(), dl.claimed_today(), dl.today_index(), dl.next_month_seconds()]
     msgs = []
     for kind in ('entry', 'ready'):
         for m in tpl[kind]:
             if m['_m'].startswith('@'):
                 continue
             msgs.append(p.patch_template(m['_m'], m))
-    a = {'rank': rank, 'msgs': msgs,
+    a = {'rank': rank, 'daily': daily, 'msgs': msgs,
          'cache': {k: p.menu_status(k) for k in sorted(p.menu_status_cache)},
          'sent': p.menu_sent, 'cpu': p.cpu_init_sent,
          'booster': BOOSTER.update_cmd(p, removed=c.get('removed', []))[1],

@@ -8,6 +8,7 @@
 
 use crate::event_calendar::EventCalendar;
 use crate::items::ItemData;
+use crate::login_calendar;
 use crate::login_markers::{LoginMarkers, Player, Station};
 use crate::map_links::{self, MapLinks, TUTORIAL_GATE, TUTORIAL_MAX_LEVEL};
 use crate::templates::{Ctx, MenuState, patch_template};
@@ -232,7 +233,8 @@ pub fn batch(w: &World, p: &mut Profile, menu: &mut MenuState, kind: &str) -> Ve
         settings: w.settings,
         now: w.now,
         hook: &hook,
-        daily: None,
+        // the session binds the daily login calendar (`profile.daily_fields = daily.fields`)
+        daily: Some(login_calendar::fields(p, w.now)),
     };
     let mut out = Vec::new();
     let mut windows: BTreeSet<String> = BTreeSet::new();
@@ -351,15 +353,20 @@ pub fn login_batch(
 }
 
 /// The systems' replacements in the login bundle (`with_quests`), for the systems ported so far: the event calendar.
-pub fn with_systems(w: &World, msgs: Vec<Msg>) -> Vec<Msg> {
-    msgs.into_iter()
-        .map(|(n, f)| {
-            if n == "EventUpdateCommand" {
+pub fn with_systems(w: &World, p: &mut Profile, msgs: Vec<Msg>) -> Vec<Msg> {
+    let mut out = Vec::with_capacity(msgs.len());
+    for (n, f) in msgs {
+        match n.as_str() {
+            "EventUpdateCommand" => {
                 let c = w.cal.event_cmd(w.now);
-                (c.class.clone(), c.to_json(true))
-            } else {
-                (n, f)
+                out.push((c.class.clone(), c.to_json(true)));
             }
-        })
-        .collect()
+            // the Halloween indicator in the record: the map event sends it
+            "NpcEventInfoCommand" | "NpcEventBossInfoCommand" => {}
+            // today's reward was claimed: the calendar does not open at login
+            "DailyLoginRewardDayCommand" if login_calendar::claimed_today(p, w.now) => {}
+            _ => out.push((n, f)),
+        }
+    }
+    out
 }

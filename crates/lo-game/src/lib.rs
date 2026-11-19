@@ -11,6 +11,7 @@ pub mod event_appearances;
 pub mod event_calendar;
 pub mod extras;
 pub mod items;
+pub mod login_calendar;
 pub mod login_markers;
 pub mod map_layout;
 pub mod map_links;
@@ -318,10 +319,8 @@ impl Session {
                         .cloned()
                         .unwrap_or(Value::Null);
                     let w = game.world(&seed, lo_core::pytime::now());
-                    bundles::with_systems(
-                        &w,
-                        bundles::login_batch(&w, &mut p, &mut self.menu, "entry", true),
-                    )
+                    let msgs = bundles::login_batch(&w, &mut p, &mut self.menu, "entry", true);
+                    bundles::with_systems(&w, &mut p, msgs)
                 };
                 self.send_bundle(msgs, "login bundle").await?;
                 self.map_pending = true;

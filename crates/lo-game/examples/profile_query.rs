@@ -7,6 +7,7 @@ use lo_core::settings::Settings;
 use lo_core::{GameData, pyjson};
 use lo_game::event_calendar::EventCalendar;
 use lo_game::items::ItemData;
+use lo_game::login_calendar;
 use lo_game::login_markers::LoginMarkers;
 use lo_game::login_markers::Player;
 use lo_game::map_links::MapLinks;
@@ -90,6 +91,12 @@ fn main() {
             &mut |_| {},
         );
         let rank = json!([r, ranks.breakdown(&mut p, now)]);
+        let daily = json!([
+            login_calendar::fields(&mut p, now),
+            login_calendar::claimed_today(&mut p, now),
+            login_calendar::today_index(&mut p, now),
+            login_calendar::next_month_seconds(now),
+        ]);
         let mut msgs = Vec::new();
         for kind in ["entry", "ready"] {
             for m in tpl[kind].as_array().unwrap() {
@@ -164,7 +171,7 @@ fn main() {
         let mut sent_sorted: Vec<(&String, &Value)> = sent.iter().collect();
         sent_sorted.sort_by(|a, b| a.0.cmp(b.0));
         out.push(json!({
-            "rank": rank, "msgs": msgs, "cache": cache,
+            "rank": rank, "daily": daily, "msgs": msgs, "cache": cache,
             "sent": Value::Object(sent_sorted.into_iter().map(|(k, v)| (k.clone(), v.clone())).collect()),
             "cpu": state.cpu_init_sent, "booster": b, "uses": uses, "cit": cit, "tech": tech, "sa": sa,
             "doc": p.d, "dirty": p.is_dirty()

@@ -74,6 +74,21 @@ def run(kind, base):
     return msgs, lines
 
 
+# Counters that follow the clock: the two servers run a few seconds apart, so these may differ by that much (unit: tolerance).
+CLOCK = {'timeLeft': 120000, 'timestamp': 120000, 'nextMonthSeconds': 120, 'timeToEndEvent': 120}
+
+
+def clock_only(x, y, key=None):
+    """True if x and y differ only in the clock counters above, within their tolerance."""
+    if isinstance(x, dict) and isinstance(y, dict):
+        return x.keys() == y.keys() and all(clock_only(x[k], y[k], k) for k in x)
+    if isinstance(x, list) and isinstance(y, list):
+        return len(x) == len(y) and all(clock_only(a, b, key) for a, b in zip(x, y))
+    if x == y and type(x) is type(y):
+        return True
+    return (key in CLOCK and type(x) is int and type(y) is int and abs(x - y) <= CLOCK[key])
+
+
 def main():
     base = make_save(tempfile.mkdtemp(prefix='lo_game_base_'))
     py, pyl = run('python', base)
@@ -83,12 +98,16 @@ def main():
     b = [json.dumps(m, sort_keys=True) for m in rs]
     diffs, shown = 0, 0
     missing, extra, changed = collections.Counter(), collections.Counter(), collections.Counter()
+    clock = 0
     for op, i1, i2, j1, j2 in difflib.SequenceMatcher(None, a, b, autojunk=False).get_opcodes():
         if op == 'equal':
             continue
         for k in range(max(i2 - i1, j2 - j1)):
             x = py[i1 + k] if i1 + k < i2 else None
             y = rs[j1 + k] if j1 + k < j2 else None
+            if x and y and clock_only(x, y):
+                clock += 1
+                continue
             diffs += 1
             if x and y and x.get('name') == y.get('name'):
                 changed[x['name']] += 1
@@ -111,7 +130,8 @@ def main():
     for label, c in (('different', changed), ('only in python', missing), ('only in rust', extra)):
         if c:
             print('%s: %s' % (label, ', '.join('%s %d' % kv for kv in c.most_common())))
-    print('steps %s: %d messages (python) / %d (rust), %d log lines, %d differences' % (STEPS, len(py), len(rs), len(pyl), diffs))
+    print('steps %s: %d messages (python) / %d (rust), %d log lines, %d differences (%d messages equal but for the clock)'
+          % (STEPS, len(py), len(rs), len(pyl), diffs, clock))
     sys.exit(1 if diffs else 0)
 
 

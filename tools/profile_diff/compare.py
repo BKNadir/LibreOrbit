@@ -13,7 +13,7 @@ after are compared.
 
 Usage: python3 -I compare.py <OpenOrbit checkout> [--cases N] [--seed S] [--keep <dir>]     Exit status 1 if anything differs.
 """
-import argparse, copy, json, os, random, shutil, subprocess, sys, tempfile
+import argparse, copy, datetime, json, os, random, shutil, subprocess, sys, tempfile, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -81,7 +81,10 @@ def make_cases(oo, n, seed, tmp):
     cases = []
     for i in range(n):
         d = copy.deepcopy(base)
-        now = rnd.uniform(1767225600, 1798761600)            # 2026-2027
+        now = rnd.uniform(1767225600, 1798761600) if rnd.random() < 0.7 else rnd.uniform(1798761600, 1924992000)  # 2026-2027, 2027-2030
+        if rnd.random() < 0.15:                               # around midnight on a month change (local time)
+            t = datetime.date.fromtimestamp(now).replace(day=1)
+            now = time.mktime(t.timetuple()) + rnd.uniform(-90, 90)
         sid = d['active_ship']
         ship = d['ships'][sid]
         cid = str(ship['active_config'])
@@ -166,6 +169,13 @@ def make_cases(oo, n, seed, tmp):
             day0 = rnd.choice(['2025-12', '2026-01', '2026-06'])
             d['rank'] = {'day': day0 + '-15', 'points': 100, 'rank': rnd.randint(1, 21), 'ay': day0,
                          'history': {'%s-%02d' % (day0, k): {'points': 100 + k * rnd.randint(0, 50), 'ep': 0, 'honor': 0} for k in range(1, 45, 2)}}
+        today = datetime.date.fromtimestamp(now)
+        ym = today.strftime('%Y-%m')
+        d['daily_login'] = rnd.choice([None, None, {'ay': ym, 'day': rnd.randint(0, 25), 'last': rnd.choice(['', today.isoformat(), '2026-01-03'])},
+                                       {'ay': ym, 'day': rnd.choice([0, 1]), 'last': today.isoformat()}, {'ay': '2025-11', 'day': 7, 'last': '2025-11-08'},
+                                       {'ay': ym, 'day': 25, 'last': ''}])
+        if d['daily_login'] is None:
+            del d['daily_login']
         cases.append({'doc': d, 'now': now, 'force_rank': rnd.random() < 0.2, 'settings_path': rnd.choice([None, None] + settings_files),
                       'hooks': rnd.choice([{}, {'plutus': True, 'tdm': False, 'returnee_login': True}]),
                       'daily': rnd.choice([None, {'day': 3, 'claimed': True}]),
