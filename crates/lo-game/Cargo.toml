@@ -13,5 +13,6 @@ chrono.workspace = true
 lo-core.workspace = true
 lo-protocol.workspace = true
 lo-save.workspace = true
+regex.workspace = true
 serde_json.workspace = true
 tokio.workspace = true

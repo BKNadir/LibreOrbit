@@ -17,12 +17,13 @@ use std::time::{Duration, Instant, SystemTime};
 pub const REFRESH: Duration = Duration::from_secs(1);
 
 /// On/off switches ported so far, with their defaults (`_b` entries of `SCHEMA`).
-pub const SWITCHES: [(&str, bool); 5] = [
+pub const SWITCHES: [(&str, bool); 6] = [
     ("session_always_open", false),
     ("event_looks_in_shop", true),
     ("admin_mode", false),
     ("gm_console", false),
     ("infinite_cargo", false),
+    ("no_level_limit", false),
 ];
 
 /// Choices among options ported so far (`type='level'` entries): key, default, number of options.

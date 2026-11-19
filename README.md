@@ -52,6 +52,7 @@ tools/protocol_diff/run.sh ../OpenOrbit                                         
 sudo python3 -I tools/web_diff/compare.py ../OpenOrbit target/debug/libreorbit .     # serveur web (ports 80, 8090…)
 python3 -I tools/game_diff/compare.py ../OpenOrbit target/debug/libreorbit target/debug/lo-probe .   # serveur de jeu
 python3 -I tools/calendar_diff/compare.py ../OpenOrbit [--quick]                    # calendrier des événements
+python3 -I tools/map_diff/compare.py ../OpenOrbit                                   # cartes et portails
 ```
 
 Pour essayer LibreOrbit dans le panneau d'OpenOrbit : [`tools/openorbit_bridge`](tools/openorbit_bridge/README.md).

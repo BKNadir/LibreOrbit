@@ -10,6 +10,7 @@
 | Marqueurs de connexion qui ne dépendent que de la sauvegarde : `@ayarlar`, `@tuslar`, `@madenler`, `@formasyon`, `@giris_yaniti` | ✅ (identiques à `Profile.generate`, ordre des champs compris) |
 | Marqueurs `@gemi`, `@arayuz`, `@isaret` (`lo_game::login_markers` : anneaux des portails, console GM, mode admin, fenêtres d'événement selon le calendrier, barres déplacées, robot de réparation, compétence Ingénierie, zone de paix) | ✅ identiques (`crates/lo-game/tests/login_markers.rs`) |
 | Sauvegarde : compléments des anciens profils (`Profile::migrate`, `Profile::load` = le `Profile(...)` d'OpenOrbit) | ✅ identiques (`crates/lo-save/tests/migrate.rs`, 16 cas de `gen_migrate.py`, document et ordre des clés compris) |
+| Cartes et portails (`map_links.py`, `map_layout.py` → `lo_game::map_links`, `map_layout`) et le `random` de Python (`lo_core::pyrandom`) | ✅ identiques (`tools/map_diff`) |
 | `patch_template` (modèles de connexion adaptés au profil) | à faire (prochaine étape) |
 | Calendrier des événements (`event_calendar.py`, avec `event_appearances.py` et la partie événements de `settings.py`) | ✅ identique (`tools/calendar_diff`, voir ci-dessous) |
 | Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) | à faire (ci-dessous) |
@@ -33,6 +34,22 @@ et vaisseau admin), en invité ou non, avec 5 stations (dont une pile au bord de
 `@arayuz` est demandé à 12 instants, avec et sans visibilités de session, en ne gardant que les instants qui donnent la même
 interface dans 6 fuseaux (de -11 h à +14 h) : le test ne dépend donc pas du fuseau de la machine. Résultat : 135 cas,
 aucune différence. Deux erreurs volontaires (visibilités de session ignorées, bord de la zone de paix) sont détectées.
+
+## Cartes et portails
+
+`lo_game::map_links` lit les fichiers du client (`spacemap-config.xml`, `maps-config.xml`) comme OpenOrbit : noms,
+niveaux requis, échelles, portails (positions sur la grille, portails ajoutés : 5-4, LoW), mondes des cartes absentes du
+modèle (station déplacée et tournée, avant-postes, structures, donneurs de quêtes), bulles des portails et des stations.
+`lo_game::map_layout` reprend `map_layout.json` (obstacles, zones, zones sûres, champs de mines, déplacement des aliens
+autour des obstacles par A*). Le tirage au hasard passe par `lo_core::pyrandom`, le Mersenne Twister de Python : avec la
+même graine, LibreOrbit tire les mêmes nombres qu'OpenOrbit, ce qui permet de comparer exactement les fonctions aléatoires.
+
+Vérification : `tools/map_diff/compare.py` (questions identiques à `map_links.py` / `map_layout.py` et à l'exemple
+`map_query`) : tables lues, propriétés de chaque carte pour chaque compagnie, `map_world` de toutes les cartes, point
+d'arrivée pour chaque couple de cartes, bulles, 300 points et 120 segments par carte (dont les chemins A*), tirages au
+hasard avec la même graine, dans 3 scénarios (standard, sans limite de niveau, monde du World Editor qui modifie
+`map_layout.json`). Résultat : 411 660 valeurs, aucune différence. Deux erreurs volontaires (rotation des avant-postes,
+départage des égalités de l'A*) sont détectées.
 
 ## Calendrier des événements
 

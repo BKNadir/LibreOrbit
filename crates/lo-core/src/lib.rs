@@ -7,12 +7,14 @@
 //! * [`pyrepr`], [`xml`]: Python's `repr(bytes)` and `quoteattr`, used in logs and XML answers.
 //! * [`LogDir`]: the per-server log files (`HH:MM:SS text` lines).
 //! * [`pytime`]: Python's naive local time (`datetime.fromtimestamp`, `timestamp()`), for the calendars.
+//! * [`pyrandom`]: Python's `random` (same numbers for the same seed), for comparisons.
 //! * [`settings`]: the game settings file (`settings.py`), the parts ported so far.
 
 mod data;
 mod layout;
 mod logs;
 pub mod pyjson;
+pub mod pyrandom;
 pub mod pyrepr;
 pub mod pytime;
 pub mod settings;

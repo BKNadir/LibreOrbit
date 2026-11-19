@@ -27,6 +27,7 @@ tokio = { version = "1", features = ["rt-multi-thread", "net", "macros", "io-uti
 ureq = { version = "2", default-features = false, features = ["tls"] }
 indexmap = "2"
 libc = "0.2"
+regex = "1"
 serde_json = { version = "1", features = ["preserve_order", "float_roundtrip"] }
 thiserror = "2"
 tracing = "0.1"
