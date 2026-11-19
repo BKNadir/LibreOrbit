@@ -6,10 +6,16 @@
 //!
 //! Port status: reading, the new-profile seed, saving (atomic, flushed to disk, retried while another program holds the
 //! file on Windows) and the login markers that depend on the save alone (`@ayarlar`, `@tuslar`, `@madenler`,
-//! `@formasyon`, `@giris_yaniti`). `@gemi`, `@arayuz` and `@isaret` need other systems: they are in
-//! `lo_game::login_markers`. Still to come: the completions of old profiles (`_migrate`). Saves of the old v1/v2 formats are converted by OpenOrbit's panel
+//! `@formasyon`, `@giris_yaniti`) and the completions of older profiles (`Profile::migrate`; [`Profile::load`] reads
+//! and migrates like OpenOrbit's `Profile(...)`, [`Profile::open`] only reads). `@gemi`, `@arayuz` and `@isaret` need
+//! other systems: they are in `lo_game::login_markers`. Saves of the old v1/v2 formats are converted by OpenOrbit's panel
 //! (`save_migration.py`) and are refused here.
 
+mod migrate;
+
+pub use migrate::{CARGO_ORES, NEW_WINDOWS};
+
+use lo_core::settings::Settings;
 use serde_json::{Map, Value, json};
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -128,6 +134,33 @@ impl Profile {
             write_lock: Mutex::new(()),
         };
         p.save(false)?;
+        Ok(p)
+    }
+
+    /// The profile as OpenOrbit's game holds it (`Profile(seed, path)`): read (or made from the seed when the file does
+    /// not exist), completed by [`Profile::migrate`], and a new profile written at once (the web server reads it at login).
+    /// A migrated existing profile is only marked as changed: it is written with the game's usual save.
+    pub fn load(
+        path: impl Into<PathBuf>,
+        seed: &Value,
+        settings: &Settings,
+    ) -> Result<Profile, SaveError> {
+        let path = path.into();
+        let created = !path.exists();
+        let mut p = if created {
+            Profile {
+                path,
+                d: from_seed(seed),
+                dirty: true,
+                write_lock: Mutex::new(()),
+            }
+        } else {
+            Profile::open(path, None)?
+        };
+        p.migrate(seed, settings);
+        if created && p.dirty {
+            p.save(false)?;
+        }
         Ok(p)
     }
 
