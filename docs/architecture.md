@@ -110,3 +110,11 @@ Pour garder l'interface identique dès le début, deux étapes :
   6 000 décodages de données aléatoires ou abîmées. Vérifié aussi sur 16 488 messages et 200 000 décodages.
 * Écarts volontaires avec le Python, tous sur des entrées invalides : profondeur d'imbrication limitée
   à 64 au lieu de la limite de récursion de Python, et trame de plus de 16 Mio refusée.
+
+## Serveur de jeu (`lo-game`)
+
+* Écart volontaire, en attendant le reste du monde : un alien hors du champ de vue ne fait pas partir de
+  `MoveCommand` vers le client (OpenOrbit les envoie quand même, et le client demande alors qui est cet alien par
+  l'ancien protocole texte `i|<id>`). Sans combat ni autres joueurs, cela ne change rien à ce que montre le client.
+* Le profil est aussi enregistré à la déconnexion, avec la dernière position du vaisseau (OpenOrbit attend
+  l'enregistrement automatique suivant, toutes les 10 s).

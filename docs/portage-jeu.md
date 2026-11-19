@@ -89,6 +89,21 @@ sauvegarde, messages adaptés au profil (`patch_template`), monde de la carte (e
   (N.O.V.A., QFC, Synthesis…), modes (EBL, Rogue-Lite, Escort), événements supplémentaires,
   puis le monde de la carte (aliens, boîtes, minerais) au chargement.
 
+## Monde de la carte (premier morceau)
+
+`lo_game::world` reprend le début de `world.py` : à la première `ReadyRequest`, les aliens de la carte (`npc.json`,
+emplacements fixes, zones, points au hasard hors des zones sûres et des obstacles), les boîtes bonus et les minerais en
+amas (`items.json`) sont placés, puis une boucle toutes les 0,1 s montre et retire ce qui entre ou sort du champ de vue
+(`ShipCreateCommand` / `ShipRemoveCommand`, `AddOreCommand` / `AddBoxCommand` / `RemoveCollectableCommand`) et fait
+errer les aliens (`MoveCommand`). `MoveRequest` est journalisé comme dans OpenOrbit, met à jour la position du profil et
+le vaisseau du serveur (le client ne reçoit rien pour son propre déplacement). Le profil est enregistré toutes les 10 s,
+à la déconnexion et à la demande d'arrêt du panneau (`--stop-file`).
+
+Pas encore porté : poursuite et tirs des aliens, combat, récompenses, ramassage, portails, objets de la station, P.E.T.,
+capacités, zones d'exclusion des stations de clan. OpenOrbit tire ses emplacements au hasard sans graine : ils changent
+d'une partie à l'autre des deux côtés, la comparaison porte sur les nombres (journal `world: map 1, 45 NPCs, 20 bonus
+boxes, 80 ores` identique) et sur la forme des messages.
+
 ## Calendrier des événements
 
 `lo_game::event_calendar` reprend `event_calendar.py` en entier : périodes annuelles, datées et uniques, fêtes (Pâques,

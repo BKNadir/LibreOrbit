@@ -22,6 +22,7 @@ pub mod ship_ability;
 pub mod social;
 pub mod technology;
 pub mod templates;
+pub mod world;
 
 use bundles::{Msg, Templates};
 use lo_core::settings::Settings;
@@ -117,6 +118,7 @@ pub struct Game {
     pub cal: event_calendar::EventCalendar,
     pub ranks: ranks::Ranks,
     pub quests: quest::QuestData,
+    pub world_data: world::WorldData,
     /// The player's profile (the server's own player).
     pub profile: Mutex<Profile>,
 }
@@ -147,6 +149,7 @@ impl Game {
         let markers = login_markers::LoginMarkers::load(&data)?;
         let ranks = ranks::Ranks::load(&data)?;
         let quests = quest::QuestData::load(&data)?;
+        let world_data = world::WorldData::load(&data)?;
         let mut cal = event_calendar::EventCalendar::load(&data, settings.clone())?;
         cal.configure(args);
         let profile_path = cfg
@@ -168,6 +171,7 @@ impl Game {
             cal,
             ranks,
             quests,
+            world_data,
             profile: Mutex::new(profile),
         })
     }
@@ -191,6 +195,46 @@ impl Game {
     pub fn log(&self, text: &str) {
         self.logs.log("gs.log", text);
     }
+
+    /// Frames of the messages; one that cannot be encoded is logged and skipped (`encode`).
+    pub fn encode_msgs(&self, msgs: Vec<Msg>) -> Vec<u8> {
+        let mut data = Vec::new();
+        for (name, fields) in msgs {
+            let mut f = fields;
+            if let Some(o) = f.as_object_mut() {
+                o.shift_remove("_m");
+            }
+            let encoded = Struct::from_json(&f, Some(&name))
+                .map_err(|e| e.to_string())
+                .and_then(|mut s| {
+                    s.class = name.clone();
+                    self.spec.encode(&s).map_err(|e| e.to_string())
+                })
+                .and_then(|p| frame(&p).map_err(|e| e.to_string()));
+            match encoded {
+                Ok(fr) => data.extend(fr),
+                Err(e) => self.log(&format!("   could not encode, not sent: {name}: {e}")),
+            }
+        }
+        data
+    }
+
+    /// The profile to disk if it changed (`save_profile`); an error is logged and tried again later.
+    pub fn save_profile(&self) {
+        let mut p = self.profile.lock().unwrap_or_else(|e| e.into_inner());
+        if let Err(e) = p.save(false) {
+            self.log(&format!("   could not save the profile: {e}"));
+        }
+    }
+
+    fn world_ctx(&self) -> world::Ctx<'_> {
+        world::Ctx {
+            data: &self.world_data,
+            links: &self.links,
+            cal: &self.cal,
+            settings: &self.settings,
+        }
+    }
 }
 
 /// `('127.0.0.1', 51000)` like Python's address tuple.
@@ -203,11 +247,36 @@ pub async fn run(game: Game) -> std::io::Result<()> {
     let game = Arc::new(game);
     let listener = TcpListener::bind((game.cfg.address.as_str(), game.cfg.port)).await?;
     game.log(&format!(
-        "gs listening {}:{} | LibreOrbit {} (login not ported yet)",
+        "gs listening {}:{} | LibreOrbit {} (game in progress: login, map world without combat)",
         game.cfg.address,
         game.cfg.port,
         env!("CARGO_PKG_VERSION")
     ));
+    let g = game.clone();
+    tokio::spawn(async move {
+        // the profile to disk every 10 s if it changed; --stop-file: saved and closed when the file appears (`autosave`)
+        let mut last = std::time::Instant::now();
+        loop {
+            tokio::time::sleep(std::time::Duration::from_millis(500)).await;
+            if let Some(stop) = &g.cfg.stop_file
+                && stop.exists()
+            {
+                {
+                    let mut p = g.profile.lock().unwrap_or_else(|e| e.into_inner());
+                    if let Err(e) = p.save(true) {
+                        g.log(&format!("panel: save error while stopping {e}"));
+                    }
+                }
+                g.log("panel: stop request, profile saved, server shutting down");
+                let _ = std::fs::remove_file(stop);
+                std::process::exit(0);
+            }
+            if last.elapsed().as_secs_f64() >= 10.0 {
+                last = std::time::Instant::now();
+                g.save_profile();
+            }
+        }
+    });
     loop {
         let (sock, addr) = listener.accept().await?;
         let game = game.clone();
@@ -218,7 +287,12 @@ pub async fn run(game: Game) -> std::io::Result<()> {
 /// A client connection.
 struct Session {
     game: Arc<Game>,
-    sock: TcpStream,
+    rd: tokio::net::tcp::OwnedReadHalf,
+    /// Frames to the writer task (the world loop sends through it too).
+    tx: tokio::sync::mpsc::UnboundedSender<Vec<u8>>,
+    /// The map world, started after the first ready bundle (`start_world`).
+    world: Option<Arc<Mutex<world::World>>>,
+    alive: Arc<std::sync::atomic::AtomicBool>,
     addr: SocketAddr,
     secrets: Vec<String>,
     menu: templates::MenuState,
@@ -231,9 +305,21 @@ struct Session {
 impl Session {
     fn new(game: Arc<Game>, sock: TcpStream, addr: SocketAddr) -> Session {
         let _ = sock.set_nodelay(true);
+        let (rd, mut wr) = sock.into_split();
+        let (tx, mut rx) = tokio::sync::mpsc::unbounded_channel::<Vec<u8>>();
+        tokio::spawn(async move {
+            while let Some(data) = rx.recv().await {
+                if wr.write_all(&data).await.is_err() {
+                    break;
+                }
+            }
+        });
         Session {
             game,
-            sock,
+            rd,
+            tx,
+            world: None,
+            alive: Arc::new(std::sync::atomic::AtomicBool::new(true)),
             addr,
             secrets: Vec::new(),
             menu: templates::MenuState::default(),
@@ -248,7 +334,7 @@ impl Session {
         let mut framer = Framer::new(true);
         let mut buf = vec![0u8; 65536];
         loop {
-            let n = match self.sock.read(&mut buf).await {
+            let n = match self.rd.read(&mut buf).await {
                 Ok(0) => break,
                 Ok(n) => n,
                 Err(e) => {
@@ -266,11 +352,26 @@ impl Session {
             for p in packets {
                 if let Err(e) = self.on_packet(&p).await {
                     self.game.log(&format!("   connection closed: {e}"));
-                    self.game.log(&format!("disconnect {}", py_addr(self.addr)));
+                    self.close();
                     return;
                 }
             }
         }
+        self.close();
+    }
+
+    /// The connection ended: the world loop stops, the profile is saved (`close_session`).
+    fn close(&mut self) {
+        self.alive.store(false, std::sync::atomic::Ordering::SeqCst);
+        if let Some(w) = self.world.take() {
+            let now = lo_core::pytime::now();
+            let (x, y) = w.lock().unwrap_or_else(|e| e.into_inner()).hero.pos(now);
+            let mut p = self.game.profile.lock().unwrap_or_else(|e| e.into_inner());
+            p.d["position"]["x"] = Value::from(x as i64);
+            p.d["position"]["y"] = Value::from(y as i64);
+            p.mark_dirty();
+        }
+        self.game.save_profile();
         self.game.log(&format!("disconnect {}", py_addr(self.addr)));
     }
 
@@ -351,7 +452,37 @@ impl Session {
                     let w = game.world(&seed, lo_core::pytime::now());
                     bundles::login_batch(&w, &mut p, &mut self.menu, "ready", true)
                 };
-                self.send_bundle(msgs, "ready bundle").await
+                self.send_bundle(msgs, "ready bundle").await?;
+                if self.world.is_none() {
+                    self.start_world();
+                }
+                Ok(())
+            }
+            "MoveRequest" => {
+                let g = |k: &str| d.msg.get(k).and_then(|v| v.as_f64()).unwrap_or(0.0);
+                self.game.log(&format!(
+                    "<- MoveRequest position=({},{}) target=({},{})",
+                    g("positionX") as i64,
+                    g("positionY") as i64,
+                    g("targetX") as i64,
+                    g("targetY") as i64
+                ));
+                {
+                    let mut p = self.game.profile.lock().unwrap_or_else(|e| e.into_inner());
+                    p.d["position"]["x"] = Value::from(g("targetX") as i64);
+                    p.d["position"]["y"] = Value::from(g("targetY") as i64);
+                    p.mark_dirty();
+                }
+                if let Some(w) = &self.world {
+                    let f = serde_json::json!({
+                        "positionX": g("positionX"), "positionY": g("positionY"),
+                        "targetX": g("targetX"), "targetY": g("targetY"),
+                    });
+                    w.lock()
+                        .unwrap_or_else(|e| e.into_inner())
+                        .on_move(&f, lo_core::pytime::now());
+                }
+                Ok(())
             }
             _ => {
                 if !UNLOGGED.contains(&name) {
@@ -360,6 +491,62 @@ impl Session {
                 Ok(())
             }
         }
+    }
+
+    /// The map world: aliens, boxes and ores placed and the visible ones sent, then a loop every 0.1 s (`start_world`).
+    fn start_world(&mut self) {
+        let game = self.game.clone();
+        let now = lo_core::pytime::now();
+        let (map_id, pos, fac, speed) = {
+            let p = game.profile.lock().unwrap_or_else(|e| e.into_inner());
+            let f = |v: &Value| v.as_f64().unwrap_or(0.0);
+            (
+                p.d["position"]["mapId"].as_i64().unwrap_or(1),
+                (f(&p.d["position"]["x"]), f(&p.d["position"]["y"])),
+                p.d["pilot"].get("factionId").and_then(Value::as_i64),
+                p.d["ship"]
+                    .get("speed")
+                    .and_then(Value::as_f64)
+                    .unwrap_or(300.0),
+            )
+        };
+        let c = game.world_ctx();
+        let station = game.templates.station(&game.links, map_id, fac);
+        let entry = game
+            .templates
+            .world_msgs(&game.links, map_id, "entry", None);
+        let mut w = world::World::new(&c, map_id, pos, fac, station.as_ref(), &entry, now);
+        w.hero_speed = speed;
+        w.start(&c, now);
+        for line in std::mem::take(&mut w.log) {
+            game.log(&line);
+        }
+        let msgs = w.take(now);
+        if !msgs.is_empty() {
+            let _ = self.write(game.encode_msgs(msgs));
+        }
+        let w = Arc::new(Mutex::new(w));
+        self.world = Some(w.clone());
+        let tx = self.tx.clone();
+        let alive = self.alive.clone();
+        tokio::spawn(async move {
+            let mut tick = tokio::time::interval(std::time::Duration::from_millis(100));
+            while alive.load(std::sync::atomic::Ordering::SeqCst) {
+                tick.tick().await;
+                let now = lo_core::pytime::now();
+                let msgs = {
+                    let mut w = w.lock().unwrap_or_else(|e| e.into_inner());
+                    w.step(&game.world_ctx(), now);
+                    for line in std::mem::take(&mut w.log) {
+                        game.log(&line);
+                    }
+                    w.take(now)
+                };
+                if !msgs.is_empty() && tx.send(game.encode_msgs(msgs)).is_err() {
+                    break;
+                }
+            }
+        });
     }
 
     /// If the player left the game with the ship destroyed: repaired at the station (`revive_on_login`).
@@ -420,32 +607,20 @@ impl Session {
         ));
     }
 
+    fn write(&self, data: Vec<u8>) -> std::io::Result<()> {
+        self.tx
+            .send(data)
+            .map_err(|_| std::io::Error::new(std::io::ErrorKind::BrokenPipe, "connection closed"))
+    }
+
     /// Sends a bundle and logs it as one line (`send(msgs, note)`).
     async fn send_bundle(&mut self, msgs: Vec<Msg>, note: &str) -> std::io::Result<()> {
-        let mut data = Vec::new();
         let n = msgs.len();
-        for (name, fields) in msgs {
-            let mut f = fields;
-            if let Some(o) = f.as_object_mut() {
-                o.shift_remove("_m");
-            }
-            let encoded = Struct::from_json(&f, Some(&name))
-                .map_err(|e| e.to_string())
-                .and_then(|mut s| {
-                    s.class = name.clone();
-                    self.game.spec.encode(&s).map_err(|e| e.to_string())
-                })
-                .and_then(|p| frame(&p).map_err(|e| e.to_string()));
-            match encoded {
-                Ok(fr) => data.extend(fr),
-                Err(e) => self
-                    .game
-                    .log(&format!("   could not encode, not sent: {name}: {e}")),
-            }
-        }
-        self.sock.write_all(&data).await?;
+        let data = self.game.encode_msgs(msgs);
+        let len = data.len();
+        self.write(data)?;
         self.game
-            .log(&format!("-> {note} ({n} messages, {} bytes)", data.len()));
+            .log(&format!("-> {note} ({n} messages, {len} bytes)"));
         Ok(())
     }
 
@@ -466,7 +641,7 @@ impl Session {
                     .log(&format!("   could not encode, not sent: {}: {e}", m.class)),
             }
         }
-        self.sock.write_all(&data).await?;
+        self.write(data)?;
         if !quiet {
             for m in &msgs {
                 self.game

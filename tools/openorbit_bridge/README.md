@@ -18,8 +18,19 @@ Sans `LIBREORBIT_EXE`, le panneau fonctionne exactement comme avant.
 
 ## Services
 
-`LIBREORBIT_SERVICES` choisit les services confiés à LibreOrbit (liste séparée par des virgules, `web` par défaut).
-Aujourd'hui seul `web` existe ; `game` viendra avec la suite de l'étape 2.
+`LIBREORBIT_SERVICES` choisit les services confiés à LibreOrbit (liste séparée par des virgules, `web` par défaut) :
+
+* `web` : la connexion web, terminée ;
+* `game` : le serveur de jeu, en cours. Il mène jusqu'à l'écran de jeu et fait vivre la carte (aliens qui se
+  promènent, boîtes bonus, minerais, déplacement du vaisseau). Pas encore de combat, de ramassage, de portails, de tchat
+  ni de boutique ; les fenêtres des systèmes pas encore portés gardent les données de l'enregistrement.
+
+Pour essayer les deux :
+```
+setx LIBREORBIT_SERVICES web,game
+```
+puis redémarrer le panneau. Le serveur de jeu écrit dans la sauvegarde comme OpenOrbit (toutes les 10 s et à
+l'arrêt) : pour un premier essai, utilise un emplacement de sauvegarde de test (une copie de ta partie).
 
 ## Retour en arrière
 

@@ -500,6 +500,7 @@ name = "lo-game"
 version = "0.1.0"
 dependencies = [
  "chrono",
+ "indexmap",
  "lo-core",
  "lo-protocol",
  "lo-save",
