@@ -13,6 +13,7 @@
 | Cartes et portails (`map_links.py`, `map_layout.py` → `lo_game::map_links`, `map_layout`) et le `random` de Python (`lo_core::pyrandom`) | ✅ identiques (`tools/map_diff`) |
 | Réglages du jeu (`settings.py` → `lo_core::settings` : schéma complet exporté, multiplicateurs et sous-réglages, écriture du fichier, résumé du panneau) | ✅ identiques (`tools/settings_diff`, 403 documents, 1,28 million de valeurs) |
 | `patch_template` (`lo_game::templates`) avec ce qu'il lit : `extras.py`, `booster.py`, la partie profil de `technology.py`, `ship_ability.py` et `combat_items.py` (barre de raccourcis, temps de recharge, CPU, lanceur) | ✅ identiques (`tools/profile_diff`, voir ci-dessous) |
+| Rang du jour (`ranks.py` → `lo_game::ranks` : points, rang, record du jour, récompense du mois, `dailyRank`) | ✅ identique (`tools/profile_diff`, avec `daily_rank` et le détail des points) |
 | Calendrier des événements (`event_calendar.py`, avec `event_appearances.py` et la partie événements de `settings.py`) | ✅ identique (`tools/calendar_diff`, voir ci-dessous) |
 | Connexion (`LoginRequest`) et chargement de la carte (`ReadyRequest`) : paquets de connexion (`lo_game::bundles`) avec les systèmes déjà portés | ✅ branché ; il reste les systèmes non portés (ci-dessous) |
 | Simulation de la carte, combat, systèmes du jeu | à faire |
@@ -78,9 +79,8 @@ sauvegarde, messages adaptés au profil (`patch_template`), monde de la carte (e
 (ou ne les ajoutent pas). `tools/game_diff/compare.py … version,login,ready` aligne les deux flux (difflib) et résume les
 écarts par message :
 
-* 19/11/2026 : 370 messages (Python) / 318 (Rust), 88 différences. Restent : rang du jour (`ranks.py`, `dailyRank`),
-  Battle Pass et Season Pass, quêtes, récompenses quotidiennes et Mini Client, boutique (inventaire, modules), P.E.T.,
-  nouveaux systèmes (N.O.V.A., QFC, Synthesis…), social (tchat, courrier), modes (EBL, Rogue-Lite, Escort), événements
+* 19/11/2026 : 370 messages (Python) / 318 (Rust), 87 différences (rang du jour porté). Restent : Battle Pass et
+  Season Pass, quêtes, récompenses quotidiennes et Mini Client, boutique (inventaire, modules), P.E.T., nouveaux systèmes (N.O.V.A., QFC, Synthesis…), social (tchat, courrier), modes (EBL, Rogue-Lite, Escort), événements
   supplémentaires, puis le monde de la carte (aliens, boîtes, minerais) au chargement.
 
 ## Calendrier des événements

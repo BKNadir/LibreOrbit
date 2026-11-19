@@ -24,6 +24,8 @@ pub struct ItemData {
     pub flashres: Option<HashSet<String>>,
     /// Booster kinds with the Ö6 ones (`booster.B['kinds']`).
     pub booster_kinds: Map<String, Value>,
+    /// The client's item stack limits (`client_items.json` `stack`, below 10^12) (`player_profile.stack_cap`).
+    pub stacks: HashMap<String, i64>,
 }
 
 fn read(data: &GameData, f: &str) -> Result<Value, String> {
@@ -78,7 +80,19 @@ impl ItemData {
         for (k, v) in o6["boosters"]["kinds"].as_object().into_iter().flatten() {
             booster_kinds.entry(k.clone()).or_insert_with(|| v.clone());
         }
+        let stacks = data
+            .raw("client_items.json")
+            .ok()
+            .and_then(|c| c["items"].as_object().cloned())
+            .into_iter()
+            .flatten()
+            .filter_map(|(k, v)| {
+                let s = v.get("stack").and_then(Value::as_f64).unwrap_or(0.0);
+                (s > 0.0 && s < 1e12).then_some((k, s as i64))
+            })
+            .collect();
         Ok(ItemData {
+            stacks,
             abilities: read(data, "ship_abilities.json")?,
             e,
             o6,
@@ -88,6 +102,11 @@ impl ItemData {
             flashres,
             booster_kinds,
         })
+    }
+
+    /// The client's stack limit of an item (`stack_cap`).
+    pub fn stack_cap(&self, loot: &str) -> Option<i64> {
+        self.stacks.get(loot).copied()
     }
 
     /// `items.json` `combat_items` (`S` in `combat_items.py`).

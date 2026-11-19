@@ -8,7 +8,9 @@ use lo_core::{GameData, pyjson};
 use lo_game::event_calendar::EventCalendar;
 use lo_game::items::ItemData;
 use lo_game::login_markers::LoginMarkers;
+use lo_game::login_markers::Player;
 use lo_game::map_links::MapLinks;
+use lo_game::ranks::Ranks;
 use lo_game::technology::Timer;
 use lo_game::templates::{Ctx, MenuState, menu_status, patch_template};
 use lo_game::{booster, combat_items, extras, ship_ability, technology};
@@ -38,6 +40,7 @@ fn main() {
     let maps = MapLinks::load(&data).expect("maps");
     let markers = LoginMarkers::load(&data).expect("markers");
     let tpl = data.raw("defaults/login.json").expect("login.json");
+    let ranks = Ranks::load(&data).expect("ranks");
     let mut out = Vec::new();
     for (c, doc) in cases
         .as_array()
@@ -73,6 +76,20 @@ fn main() {
         };
         let mut p = Profile::from_value("x.json", doc.clone());
         let mut state = MenuState::default();
+        let force = c
+            .get("force_rank")
+            .and_then(Value::as_bool)
+            .unwrap_or(false);
+        let r = ranks.daily_rank(
+            &items,
+            &mut p,
+            &settings,
+            Player::LOCAL,
+            now,
+            force,
+            &mut |_| {},
+        );
+        let rank = json!([r, ranks.breakdown(&mut p, now)]);
         let mut msgs = Vec::new();
         for kind in ["entry", "ready"] {
             for m in tpl[kind].as_array().unwrap() {
@@ -147,7 +164,7 @@ fn main() {
         let mut sent_sorted: Vec<(&String, &Value)> = sent.iter().collect();
         sent_sorted.sort_by(|a, b| a.0.cmp(b.0));
         out.push(json!({
-            "msgs": msgs, "cache": cache,
+            "rank": rank, "msgs": msgs, "cache": cache,
             "sent": Value::Object(sent_sorted.into_iter().map(|(k, v)| (k.clone(), v.clone())).collect()),
             "cpu": state.cpu_init_sent, "booster": b, "uses": uses, "cit": cit, "tech": tech, "sa": sa,
             "doc": p.d, "dirty": p.is_dirty()

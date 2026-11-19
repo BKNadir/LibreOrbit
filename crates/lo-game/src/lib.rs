@@ -14,6 +14,7 @@ pub mod items;
 pub mod login_markers;
 pub mod map_layout;
 pub mod map_links;
+pub mod ranks;
 pub mod ship_ability;
 pub mod technology;
 pub mod templates;
@@ -110,6 +111,7 @@ pub struct Game {
     pub items: items::ItemData,
     pub markers: login_markers::LoginMarkers,
     pub cal: event_calendar::EventCalendar,
+    pub ranks: ranks::Ranks,
     /// The player's profile (the server's own player).
     pub profile: Mutex<Profile>,
 }
@@ -138,6 +140,7 @@ impl Game {
         );
         let items = items::ItemData::load(&data)?;
         let markers = login_markers::LoginMarkers::load(&data)?;
+        let ranks = ranks::Ranks::load(&data)?;
         let mut cal = event_calendar::EventCalendar::load(&data, settings.clone())?;
         cal.configure(args);
         let profile_path = cfg
@@ -157,6 +160,7 @@ impl Game {
             items,
             markers,
             cal,
+            ranks,
             profile: Mutex::new(profile),
         })
     }
@@ -297,6 +301,16 @@ impl Session {
                     let game = self.game.clone();
                     let mut p = game.profile.lock().unwrap_or_else(|e| e.into_inner());
                     self.revive_on_login(&mut p);
+                    let now = lo_core::pytime::now();
+                    game.ranks.daily_rank(
+                        &game.items,
+                        &mut p,
+                        &game.settings,
+                        login_markers::Player::LOCAL,
+                        now,
+                        false,
+                        &mut |_| {},
+                    );
                     let seed = game
                         .templates
                         .entry

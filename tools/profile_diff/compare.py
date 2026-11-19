@@ -156,7 +156,17 @@ def make_cases(oo, n, seed, tmp):
             d['extra_uses'] = {l: rnd.randint(0, 120) for l in rnd.sample(extras, 4)}
             d['extra_copies'] = {l: rnd.randint(1, 3) for l in rnd.sample(extras, 3)}
         d['next_id'] = nid[0]
-        cases.append({'doc': d, 'now': now, 'settings_path': rnd.choice([None, None] + settings_files),
+        d['created'] = rnd.choice(['2025-03-01 12:00:00', '2026-10-31 23:30:00', 'broken'])
+        d['pilot'].update(ep=rnd.choice([0, 12345, 4.5e8]), honourPoints=rnd.choice([0, 999, -600, 25000]), level=rnd.randint(1, 30))
+        if rnd.random() < 0.7:
+            d['counters'] = {'npc': {str(rnd.randint(1, 120)): rnd.randint(1, 500) for _ in range(5)},
+                             'player': {rnd.choice(['ship_goliath', 'ship_vengeance', 'x']): 3}, 'death_by_enemy': rnd.randint(0, 9),
+                             'quest': rnd.randint(0, 40)}
+        if rnd.random() < 0.6:
+            day0 = rnd.choice(['2025-12', '2026-01', '2026-06'])
+            d['rank'] = {'day': day0 + '-15', 'points': 100, 'rank': rnd.randint(1, 21), 'ay': day0,
+                         'history': {'%s-%02d' % (day0, k): {'points': 100 + k * rnd.randint(0, 50), 'ep': 0, 'honor': 0} for k in range(1, 45, 2)}}
+        cases.append({'doc': d, 'now': now, 'force_rank': rnd.random() < 0.2, 'settings_path': rnd.choice([None, None] + settings_files),
                       'hooks': rnd.choice([{}, {'plutus': True, 'tdm': False, 'returnee_login': True}]),
                       'daily': rnd.choice([None, {'day': 3, 'claimed': True}]),
                       'removed': rnd.sample(boosters, rnd.randint(0, 2)),

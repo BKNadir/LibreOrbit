@@ -5,7 +5,8 @@ Usage: python3 -I oracle.py <OpenOrbit checkout> <cases.json> <out.json> [<prepa
 Each case: a profile document (loaded with Profile(d=...), so OpenOrbit's migrations run; the document after loading is written
 to <prepared.json> for the Rust side), a moment, panel settings, session hooks and daily fields. Answers: every message of the
 login template patched in order, then the shortcut menu's cached states, the reported states, the jump panel, the booster
-update, the extras' uses and charges, the timers of the combat items, technology and abilities, and the profile document after.
+update, the extras' uses and charges, the timers of the combat items, technology and abilities, and the profile document after. The daily rank is computed
+first, as at login.
 """
 import copy, json, os, sys, time, types
 
@@ -16,6 +17,8 @@ os.chdir(os.path.join(oo, 'server'))
 NOW = [1763900000.0]
 _real_time = time.time
 time.time = lambda: NOW[0]
+_real_localtime = time.localtime
+time.localtime = lambda t=None: _real_localtime(NOW[0] if t is None else t)
 import settings as SET  # noqa: E402
 import player_profile as PP  # noqa: E402
 import booster as BOOSTER  # noqa: E402
@@ -23,6 +26,7 @@ import extras as EX  # noqa: E402
 import technology as TECH  # noqa: E402
 import ship_ability as SA  # noqa: E402
 import combat_items as CIT  # noqa: E402
+import ranks as RT  # noqa: E402
 
 tpl = json.load(open(os.path.join(oo, 'server', 'data', 'defaults', 'login.json'), encoding='utf8'))
 seed = tpl.get('seed', {})
@@ -38,13 +42,14 @@ for c in cases:
     p.window_hooks = {k: (lambda v=v: v) for k, v in (c.get('hooks') or {}).items()}
     if c.get('daily'):
         p.daily_fields = (lambda d=c['daily']: dict(d))
+    rank = [RT.daily_rank(p, force=bool(c.get('force_rank'))), RT.breakdown(p)]
     msgs = []
     for kind in ('entry', 'ready'):
         for m in tpl[kind]:
             if m['_m'].startswith('@'):
                 continue
             msgs.append(p.patch_template(m['_m'], m))
-    a = {'msgs': msgs,
+    a = {'rank': rank, 'msgs': msgs,
          'cache': {k: p.menu_status(k) for k in sorted(p.menu_status_cache)},
          'sent': p.menu_sent, 'cpu': p.cpu_init_sent,
          'booster': BOOSTER.update_cmd(p, removed=c.get('removed', []))[1],
